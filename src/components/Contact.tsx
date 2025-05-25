@@ -11,7 +11,7 @@ const Contact = () => {
       </h1>
       <p className="font-ancizar text-center text-lg">
         Feel free to reach out for collaborations, questions, or just to say hi.
-        <br /> I&apos;m always
+        <br /> I&apos;m always{" "}
         <span className="text-amber-400/80">
           open to new ideas and opportunities.
         </span>

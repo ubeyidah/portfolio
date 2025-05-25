@@ -5,7 +5,7 @@ import useScrollSpy from "@/hooks/useScrollSpy";
 import { usePathname } from "next/navigation";
 
 const Header = () => {
-  const ids = ["home", "about", "skills", "projects"];
+  const ids = ["home", "about", "skills", "projects","contact"];
   const activeId = useScrollSpy(ids);
   const links = [
     {
@@ -33,6 +33,7 @@ const Header = () => {
       label: "Blogs",
       href: "/blog",
     },
+    
   ];
 
   const pathname = usePathname();
@@ -60,9 +61,9 @@ const Header = () => {
             </li>
           ))}
           <li>
-            <button className="bg-amber-400 ml-2 text-black/80 cursor-pointer px-4 py-1 rounded-full">
+            <Link href="/#contact" className="bg-amber-400 ml-2 text-black/80 cursor-pointer px-4 py-1 rounded-full">
               Contact
-            </button>
+            </Link>
           </li>
         </ul>
         <div className="md:hidden">
