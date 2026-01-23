@@ -52,7 +52,7 @@ export default function FixedInput() {
               className="flex flex-col items-center justify-center bg-black/20 rounded-3xl p-6 text-center text-foreground"
             >
               <h2 className="text-xl font-bold mb-2">AI Chat Feature</h2>
-              <p className="mb-4">This feature is under development. For direct contact, please reach out via our social channels:</p>
+              <p className="mb-4">This feature is under development. For direct contact, please use the available contact options.</p>
               <div className="flex gap-4">
                 <a href="https://t.me/ubeyidah" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">
                   <HugeiconsIcon icon={TelegramIcon} size={24} />
