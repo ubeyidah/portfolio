@@ -37,7 +37,7 @@ export default async function BlogPostLayout({
             />
             Back to all posts
           </Link>
-          <div className="h-3 flex-1 border-y border-border/60 bg-[repeating-linear-gradient(135deg,transparent_0_12px,rgba(0,0,0,0.06)_12px_13px)] dark:bg-[repeating-linear-gradient(135deg,transparent_0_12px,rgba(255,255,255,0.06)_12px_13px)]" />
+          <div className="h-3 flex-1 border-y border-border/60 stripe-bg-12" />
           <span className="text-xs font-semibold uppercase tracking-[0.45em] text-muted-foreground">
             Blog
           </span>

@@ -279,7 +279,7 @@ export default function ProjectsSection({
                 </div>
 
                 <div className="border-t">
-                  <div className="flex w-full max-w-none flex-wrap items-center gap-x-3 gap-y-2 divide-x divide-border/60 px-3 bg-[repeating-linear-gradient(135deg,transparent_0_10px,rgba(0,0,0,0.06)_10px_11px)] dark:bg-[repeating-linear-gradient(135deg,transparent_0_10px,rgba(255,255,255,0.06)_10px_11px)]">
+                  <div className="flex w-full max-w-none flex-wrap items-center gap-x-3 gap-y-2 divide-x divide-border/60 px-3 stripe-bg-10">
                     {project.technologies.map((tech) => {
                       if (tech.iconKey && TechIcons[tech.iconKey as keyof typeof TechIcons]) {
                         const IconComponent = TechIcons[tech.iconKey as keyof typeof TechIcons];

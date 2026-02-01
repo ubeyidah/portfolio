@@ -73,8 +73,8 @@ export default function BlogListSection({
             </div>
 
             <div className="hidden items-center gap-2 md:flex">
-              <div className="h-3 w-12 border-y border-border/60 bg-[repeating-linear-gradient(135deg,transparent_0_10px,rgba(0,0,0,0.06)_10px_11px)] dark:bg-[repeating-linear-gradient(135deg,transparent_0_10px,rgba(255,255,255,0.06)_10px_11px)]" />
-              <div className="h-3 w-8 border-y border-border/60 bg-[repeating-linear-gradient(135deg,transparent_0_10px,rgba(0,0,0,0.06)_10px_11px)] dark:bg-[repeating-linear-gradient(135deg,transparent_0_10px,rgba(255,255,255,0.06)_10px_11px)]" />
+              <div className="h-3 w-12 border-y border-border/60 stripe-bg-10" />
+              <div className="h-3 w-8 border-y border-border/60 stripe-bg-10" />
             </div>
 
             <div className="relative w-full md:max-w-sm">
@@ -94,7 +94,7 @@ export default function BlogListSection({
             </div>
           </div>
 
-          <div className="mt-8 h-6 border-y border-border/60 bg-[repeating-linear-gradient(135deg,transparent_0_12px,rgba(0,0,0,0.06)_12px_13px)] dark:bg-[repeating-linear-gradient(135deg,transparent_0_12px,rgba(255,255,255,0.06)_12px_13px)]" />
+          <div className="mt-8 h-6 border-y border-border/60 stripe-bg-12" />
         </div>
 
         <BorderSeparator />

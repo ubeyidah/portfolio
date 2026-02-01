@@ -58,7 +58,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             height={resolvedHeight}
             className="w-full h-auto"
           />
-          <span className="block h-8 border-t border-border/60 bg-[repeating-linear-gradient(135deg,transparent_0_12px,rgba(0,0,0,0.06)_12px_13px)] dark:bg-[repeating-linear-gradient(135deg,transparent_0_12px,rgba(255,255,255,0.06)_12px_13px)]" />
+          <span className="block h-8 border-t border-border/60 stripe-bg-12" />
         </span>
       );
     },
