@@ -61,6 +61,7 @@ export default function LatestArticlesSection({
                     width={440}
                     height={280}
                     className="h-40 w-full object-cover md:h-48"
+                    sizes="(min-width: 768px) 288px, 100vw"
                   />
                 </div>
 

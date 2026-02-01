@@ -15,6 +15,8 @@ export default function HeroSection() {
             width={60}
             height={60}
             className="rounded-full aspect-square object-top object-cover"
+            priority
+            sizes="60px"
           />
 
           <div className="flex-1">

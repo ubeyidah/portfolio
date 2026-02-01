@@ -1,5 +1,3 @@
-"use client";
-
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Github01Icon, ExternalLink, LockIcon } from "@hugeicons/core-free-icons";
 import Image from "next/image";
@@ -223,6 +221,7 @@ export default function ProjectsSection({
                       width={520}
                       height={320}
                       className="h-64 w-full object-cover md:h-full"
+                      sizes="(min-width: 768px) 384px, 100vw"
                     />
                   </div>
 

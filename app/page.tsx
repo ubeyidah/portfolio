@@ -6,9 +6,10 @@ import ProjectsSection from "@/components/ProjectsSection";
 import LatestArticlesSection from "@/components/LatestArticlesSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
-import FixedInput from "@/components/FixedInput";
+import FixedInputClient from "@/components/FixedInputClient";
 import { AnimatedSection } from "@/components/animated-section";
 import { getBlogPosts } from "@/lib/blog-posts";
+import { Suspense } from "react";
 
 export default function Page() {
   const posts = getBlogPosts();
@@ -20,7 +21,9 @@ export default function Page() {
           <div className="mx-auto max-w-5xl border-x">
             <HeroSection />
             <AboutSection />
-            <GitHubGraph />
+            <Suspense fallback={<GitHubGraphFallback />}> 
+              <GitHubGraph />
+            </Suspense>
           </div>
         </section>
       </AnimatedSection>
@@ -42,7 +45,17 @@ export default function Page() {
       <AnimatedSection delay={800}>
         <Footer />
       </AnimatedSection>
-      <FixedInput />
+      <FixedInputClient />
     </main>
+  );
+}
+
+function GitHubGraphFallback() {
+  return (
+    <section>
+      <div className="px-4 pt-4 pb-8">
+        <div className="h-32 w-full animate-pulse rounded-md border bg-muted/30" />
+      </div>
+    </section>
   );
 }
