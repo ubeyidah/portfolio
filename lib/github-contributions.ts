@@ -33,14 +33,23 @@ export const getGithubContributions = unstable_cache(
       clearTimeout(timeoutId);
     }
 
-    const lastYear = new Date().getFullYear() - 1;
+    const now = new Date();
+    const startDate = new Date(now);
+    startDate.setDate(startDate.getDate() - 365);
+
     const filteredContributions = data.contributions.filter(
-      (contribution: Contribution) => contribution.date.startsWith(`${lastYear}-`)
+      (contribution: Contribution) => {
+        const date = new Date(contribution.date);
+        return date >= startDate && date <= now;
+      }
     );
 
     return {
       contributions: filteredContributions,
-      total: data.total[lastYear],
+      total: filteredContributions.reduce(
+        (sum: number, contribution: Contribution) => sum + contribution.count,
+        0
+      ),
     };
   },
   ["github-contributions-ubeyidah"],
