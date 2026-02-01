@@ -60,7 +60,7 @@ export default function ContactSection() {
   return (
     <section id="contact" className="py-6 md:py-12">
       <div className="mx-auto h-full max-w-5xl border-x">
-        <div className="flex grow flex-col justify-center px-4 py-16 md:items-center">
+        <div className="flex grow flex-col justify-center border-b bg-linear-to-br from-muted/40 via-background to-muted/20 px-4 py-16 md:items-center">
           <h2 className="text-2xl md:text-4xl font-bold">Let&apos;s Connect</h2>
           <p className="mb-5 text-base text-muted-foreground">
             Reach out through email or find me on social media
@@ -72,12 +72,16 @@ export default function ContactSection() {
         <div className="grid md:grid-cols-3">
           {contactItems.map((contact, index) => {
             const isLarge = contact.size === "large";
+            const isMiddle = contact.label === "X (Twitter)";
 
             return (
               <Box
                 key={contact.label}
                 icon={contact.icon}
                 title={contact.label}
+                value={contact.value}
+                href={contact.href}
+                hoverClassName={isMiddle ? "hover:bg-secondary/5" : "hover:bg-secondary/10"}
                 description={
                   contact.label === "Email"
                     ? "I respond to all emails within 24 hours."
@@ -94,16 +98,7 @@ export default function ContactSection() {
                   index === 1 ? "md:col-start-3" : "",
                   contact.size === "small" ? "md:col-span-1" : ""
                 )}
-              >
-                <a
-                  className="font-medium font-mono text-sm tracking-wide hover:underline"
-                  href={contact.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {contact.value}
-                </a>
-              </Box>
+              />
             );
           })}
         </div>
@@ -123,34 +118,55 @@ type ContactBox = React.ComponentProps<"div"> & {
   icon: typeof Email;
   title: string;
   description: string;
+  value: string;
+  href: string;
+  hoverClassName?: string;
 };
 
 function Box({
   title,
   description,
+  value,
+  href,
+  hoverClassName,
   className,
-  children,
   icon: Icon,
   ...props
 }: ContactBox) {
   return (
-    <div
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
       className={cn(
-        "flex flex-col justify-between border-b md:border-r md:border-b-0",
+        "group relative flex h-full flex-col justify-between overflow-hidden border-b transition-colors md:border-r md:border-b-0",
+        hoverClassName,
         className
       )}
       {...props}
     >
+      <div className="pointer-events-none absolute right-6 top-1/2 -translate-y-1/2 opacity-[0.08]">
+        <HugeiconsIcon
+          icon={Icon}
+          size={72}
+          className="transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1"
+        />
+      </div>
+
       <div className="flex items-center gap-x-3 border-b bg-secondary/50 p-4 dark:bg-secondary/20">
         <HugeiconsIcon icon={Icon} size={18} className="text-muted-foreground" />
         <h4 className="font-heading font-medium text-lg tracking-wider">
           {title}
         </h4>
       </div>
-      <div className="flex items-center gap-x-2 p-4 py-12">{children}</div>
+      <div className="flex items-center gap-x-2 p-4 py-12">
+        <span className="font-medium font-mono text-sm tracking-wide">
+          {value}
+        </span>
+      </div>
       <div className="border-t p-4">
         <p className="text-muted-foreground text-sm">{description}</p>
       </div>
-    </div>
+    </a>
   );
 }

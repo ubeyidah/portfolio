@@ -1,6 +1,7 @@
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ExternalLink, Calendar01Icon } from "@hugeicons/core-free-icons";
 import Link from "next/link";
+import Image from "next/image";
 import type { BlogPostWithReadTime } from "@/lib/blog-posts";
 
 type LatestArticlesSectionProps = {
@@ -15,9 +16,10 @@ export default function LatestArticlesSection({
   return (
     <section className="py-6 md:py-12">
       <div className="mx-auto h-full max-w-5xl border-x">
-        <div className="flex grow flex-col justify-center px-4 py-16 md:items-center">
+        <div className="flex grow flex-col justify-center border-b bg-linear-to-br from-muted/40 via-background to-muted/20 px-4 py-16 md:items-center">
+          <p className="text-xs uppercase tracking-[0.4em] text-muted-foreground">Blog</p>
           <h2 className="text-3xl md:text-4xl font-bold">Latest Articles</h2>
-          <p className="mb-5 text-base text-muted-foreground">
+          <p className="mt-2 text-sm text-muted-foreground">
             Insights from my development journey
           </p>
         </div>
@@ -51,10 +53,33 @@ export default function LatestArticlesSection({
                 </span>
               </div>
 
-              <div className="flex flex-col gap-4 p-4">
-                <p className="text-muted-foreground leading-relaxed text-base">
-                  {article.excerpt}
-                </p>
+              <div className="flex flex-col gap-4 md:flex-row md:items-stretch">
+                <div className="relative overflow-hidden border-b md:border-b-0 md:border-r border-border/60 md:w-72 md:shrink-0">
+                  <Image
+                    src={article.image}
+                    alt={article.title}
+                    width={440}
+                    height={280}
+                    className="h-40 w-full object-cover md:h-48"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-4 p-4">
+                  <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+                    {article.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full border border-muted/40 px-2 py-0.5"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <p className="text-muted-foreground leading-relaxed text-base">
+                    {article.excerpt}
+                  </p>
+                </div>
               </div>
 
               <div className="border-t px-4 py-3">

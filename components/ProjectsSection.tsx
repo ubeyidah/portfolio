@@ -7,6 +7,7 @@ import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { TechIcons } from "./icons/TechIcons";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 const projects = [
   {
@@ -161,7 +162,7 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="py-12">
       <div className="mx-auto h-full max-w-5xl border-x">
-        <div className="flex grow flex-col justify-center px-4 py-16 md:items-center">
+        <div className="flex grow flex-col justify-center border-b bg-linear-to-br from-muted/40 via-background to-muted/20 px-4 py-16 md:items-center">
           <h2 className="text-3xl md:text-4xl font-bold">What I’m Building</h2>
           <p className="mb-5 text-base text-muted-foreground">
             Real-world projects with real users
@@ -288,6 +289,16 @@ export default function ProjectsSection() {
                 </div>
             </div>
           ))}
+        </div>
+
+        <div className="border-t px-4 py-6">
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+          >
+            View all projects
+            <HugeiconsIcon icon={ExternalLink} size={14} />
+          </Link>
         </div>
       </div>
     </section>
