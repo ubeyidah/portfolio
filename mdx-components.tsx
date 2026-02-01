@@ -50,7 +50,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       const resolvedHeight = Number(height) || 630;
 
       return (
-        <span className="block my-6 -mx-6 md:-mx-10 overflow-hidden rounded-xl border">
+        <span className="full-bleed block my-8 -mx-4 overflow-hidden border">
           <Image
             src={src}
             alt={alt || ""}
@@ -58,6 +58,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             height={resolvedHeight}
             className="w-full h-auto"
           />
+          <span className="block h-8 border-t border-border/60 bg-[repeating-linear-gradient(135deg,transparent_0_12px,rgba(0,0,0,0.06)_12px_13px)] dark:bg-[repeating-linear-gradient(135deg,transparent_0_12px,rgba(255,255,255,0.06)_12px_13px)]" />
         </span>
       );
     },

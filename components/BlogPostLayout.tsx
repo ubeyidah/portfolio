@@ -3,18 +3,30 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowLeft01Icon } from "@hugeicons/core-free-icons";
-import { getBlogPosts } from "@/lib/blog-posts";
+
+type BlogPostLayoutProps = {
+  title: string;
+  excerpt?: string;
+  image?: string;
+  date?: string;
+  author?: string;
+  readTime?: string;
+  tags?: string[];
+  children: ReactNode;
+};
 
 export default function BlogPostLayout({
+  title,
+  excerpt,
+  image,
+  date,
+  author,
+  readTime,
+  tags,
   children,
-  params,
-}: {
-  children: ReactNode;
-  params: { slug: string };
-}) {
-  const post = getBlogPosts().find((item) => item.slug === params.slug);
-  const formattedDate = post?.date
-    ? new Date(post.date).toLocaleDateString("en-US", {
+}: BlogPostLayoutProps) {
+  const formattedDate = date
+    ? new Date(date).toLocaleDateString("en-US", {
         year: "numeric",
         month: "short",
         day: "numeric",
@@ -45,24 +57,24 @@ export default function BlogPostLayout({
         <div className="border-b bg-secondary/50 px-4 py-6 dark:bg-secondary/20">
           <div className="space-y-3">
             <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
-              {post?.title ?? "Blog Post"}
+              {title}
             </h1>
-            {post?.excerpt && (
+            {excerpt && (
               <p className="text-muted-foreground text-base leading-relaxed">
-                {post.excerpt}
+                {excerpt}
               </p>
             )}
           </div>
         </div>
 
-        {post?.image && (
+        {image && (
           <div className="border-b">
             <Image
-              src={post.image}
-              alt={post.title}
+              src={image}
+              alt={title}
               width={1200}
               height={630}
-              className="h-64 w-full object-cover md:h-80"
+              className="h-72 w-full object-cover md:h-[28rem]"
               priority
             />
           </div>
@@ -73,22 +85,27 @@ export default function BlogPostLayout({
         <div className="border-b">
           <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-3 text-sm text-muted-foreground">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-foreground/90">
-                {post?.author ?? "Ubeyid Oumer"}
-              </span>
+              <a
+                href="https://github.com/ubeyidah"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground/90 transition-colors hover:text-foreground"
+              >
+                {author ?? "Ubeyidah"}
+              </a>
               <span className="opacity-60">•</span>
-              {formattedDate && post?.date ? (
-                <time dateTime={post.date}>{formattedDate}</time>
+              {formattedDate && date ? (
+                <time dateTime={date}>{formattedDate}</time>
               ) : (
                 <span>—</span>
               )}
               <span className="opacity-60">•</span>
-              <span>{post?.readTime ?? "1 min read"}</span>
+              <span>{readTime ?? "1 min read"}</span>
             </div>
 
-            {post?.tags?.length ? (
+            {tags?.length ? (
               <div className="flex flex-wrap items-center gap-2 text-xs">
-                {post.tags.map((tag) => (
+                {tags.map((tag) => (
                   <span
                     key={tag}
                     className="rounded-full border border-muted/40 px-2 py-0.5"
@@ -102,7 +119,7 @@ export default function BlogPostLayout({
         </div>
 
         <div className="px-4 py-10">
-          <article className="space-y-6 blog-content max-w-3xl">
+          <article className="space-y-6 blog-content">
             {children}
           </article>
         </div>

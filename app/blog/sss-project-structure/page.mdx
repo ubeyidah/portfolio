@@ -1,3 +1,6 @@
+import BlogPostLayout from "@/components/BlogPostLayout";
+import { getBlogPosts } from "@/lib/blog-posts";
+
 export const metadata = {
 	title: "How SSS (Single Source Structure) Ended My Project Organization Nightmare | Ubeyidah",
 	description:
@@ -29,21 +32,17 @@ export const metadata = {
 	},
 };
 
-<div className="space-y-3">
-	<p className="text-sm uppercase tracking-wider text-muted-foreground">Blog</p>
-	<h1 className="text-3xl md:text-4xl font-bold tracking-tight">
-		How SSS (Single Source Structure) Ended My Project Organization Nightmare
-	</h1>
-	<div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
-		<span>Ubeyid Oumer</span>
-		<span>•</span>
-		<time dateTime="2026-01-03">Jan 3, 2026</time>
-		<span>•</span>
-		<span>5 min read</span>
-	</div>
-</div>
+export const post = getBlogPosts().find((item) => item.slug === "sss-project-structure");
 
-<img src="/projects/nviron.png" alt="Nviron project UI" />
+<BlogPostLayout
+	title={post?.title ?? "How SSS (Single Source Structure) Ended My Project Organization Nightmare"}
+	excerpt={post?.excerpt}
+	image={post?.image}
+	date={post?.date}
+	author={post?.author}
+	readTime={post?.readTime}
+	tags={post?.tags ?? []}
+>
 
 You know that moment.
 
@@ -175,3 +174,5 @@ With SSS, you’ll no longer need to remember where you put something or go sear
 Try this system for a week. I bet you’ll wonder how you ever lived without it.
 
 If this helped you, give it a clap. And if you have any opinion on what should be added or something that could be refined, I appreciate your feedback in the comments. Let’s help other developers finally tame their project chaos.
+
+</BlogPostLayout>

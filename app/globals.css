@@ -205,6 +205,12 @@ html, body {
   font-family: var(--font-serif), Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
+.blog-content > :not(.full-bleed) {
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @keyframes footer-line-move {
   0% { transform: translateX(0); }
   100% { transform: translateX(50%); }

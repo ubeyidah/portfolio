@@ -1,3 +1,6 @@
+import BlogPostLayout from "@/components/BlogPostLayout";
+import { getBlogPosts } from "@/lib/blog-posts";
+
 export const metadata = {
 	title: "The Best Way to Learn Programming Is When You Actually Need It | Ubeyidah",
 	description:
@@ -29,24 +32,17 @@ export const metadata = {
 	},
 };
 
-<div className="space-y-3">
-	<p className="text-sm uppercase tracking-wider text-muted-foreground">Blog</p>
-	<h1 className="text-3xl md:text-4xl font-bold tracking-tight">
-		The Best Way to Learn Programming Is When You Actually Need It
-	</h1>
-	<div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
-		<span>Ubeyid Oumer</span>
-		<span>•</span>
-		<time dateTime="2025-11-22">Nov 22, 2025</time>
-		<span>•</span>
-		<span>3 min read</span>
-	</div>
-</div>
+export const post = getBlogPosts().find((item) => item.slug === "learning-by-building");
 
-<img
-	src="https://miro.medium.com/v2/resize:fit:640/format:webp/0*1ZDU7eEksPkMvjmp"
-	alt="Learning by building"
-/>
+<BlogPostLayout
+	title={post?.title ?? "The Best Way to Learn Programming Is When You Actually Need It"}
+	excerpt={post?.excerpt}
+	image={post?.image}
+	date={post?.date}
+	author={post?.author}
+	readTime={post?.readTime}
+	tags={post?.tags ?? []}
+>
 
 I had this thought in my mind for a long time, and it kept coming back: the best way to learn programming is when you actually need the thing you’re learning.
 
@@ -116,3 +112,5 @@ At the end of the day, programming is not about collecting concepts. It’s abou
 So keep this simple cycle: learn the basics → build anything → hit a limit → learn the next thing → improve.
 
 Do this consistently, and you’ll grow faster than you ever expected.
+
+</BlogPostLayout>
