@@ -18,7 +18,7 @@ export default function Header() {
             <nav className="hidden md:flex gap-8">
               <Link href="/" className="text-muted-foreground hover:text-foreground transition-colors">Home</Link>
               <Link href="/projects" className="text-muted-foreground hover:text-foreground transition-colors">Projects</Link>
-              <Link href="/blog" className="text-muted-foreground hover:text-foreground transition-colors">Blog</Link>
+              <Link href="/blog" className="text-muted-foreground hover:text-foreground transition-colors">Blogs</Link>
             </nav>
             <ThemeToggle />
             <button
