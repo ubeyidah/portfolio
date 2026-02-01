@@ -1,63 +1,32 @@
 import BlogPostLayout from "@/components/BlogPostLayout";
-import { getBlogPosts } from "@/lib/blog-posts";
 
 export const metadata = {
-	title: "Designing DLog: Turning Reflections Into a Daily Habit | Ubeyidah",
-	description:
-		"The UX decisions behind a minimalist reflection app and what I learned from early users.",
+	title: "Post removed | Ubeyidah",
+	description: "This blog post has been removed.",
 	alternates: {
 		canonical: "https://ubeyidah.tech/blog/designing-dlog",
 	},
 	openGraph: {
-		title: "Designing DLog: Turning Reflections Into a Daily Habit",
-		description:
-			"The UX decisions behind a minimalist reflection app and what I learned from early users.",
+		title: "Post removed",
+		description: "This blog post has been removed.",
 		url: "https://ubeyidah.tech/blog/designing-dlog",
 		type: "article",
-		images: [
-			{
-				url: "https://ubeyidah.tech/projects/dlog.png",
-				width: 1200,
-				height: 630,
-				alt: "DLog app preview",
-			},
-		],
 	},
 	twitter: {
-		card: "summary_large_image",
-		title: "Designing DLog: Turning Reflections Into a Daily Habit",
-		description:
-			"The UX decisions behind a minimalist reflection app and what I learned from early users.",
-		images: ["https://ubeyidah.tech/projects/dlog.png"],
+		card: "summary",
+		title: "Post removed",
+		description: "This blog post has been removed.",
 	},
 };
 
-export const post = getBlogPosts().find((item) => item.slug === "designing-dlog");
-
 <BlogPostLayout
-	title={post?.title ?? "Designing DLog: Turning Reflections Into a Daily Habit"}
-	excerpt={post?.excerpt}
-	image={post?.image}
-	date={post?.date}
-	author={post?.author}
-	readTime={post?.readTime}
-	tags={post?.tags ?? []}
+	title="Post removed"
+	excerpt="This blog post has been removed."
+	image={undefined}
+	date={undefined}
+	author={undefined}
+	readTime={undefined}
+	tags={[]}
 >
-
-DLog is a minimalist reflection app. The goal was simple: make journaling feel lightweight, fast, and consistent.
-
-## The design principles
-
-- **One action per screen** to reduce friction.
-- **Instant feedback** after a log entry.
-- **Soft visuals** to keep attention on the text.
-
-## What early users told me
-
-- “It feels calmer than other journaling apps.”
-- “The daily streak makes me show up.”
-- “I like that it doesn’t ask too much.”
-
-Small UX choices add up. If your product feels heavy, remove steps until the core action is effortless.
-
+This post is no longer available.
 </BlogPostLayout>

@@ -30,14 +30,5 @@ export const blogPosts: BlogPost[] = [
     image: "https://miro.medium.com/v2/resize:fit:640/format:webp/1*FcysIa0YKrjadv2ID3K2hg.png",
     tags: ["Productivity", "File Organization", "Developer Tools"],
   },
-  {
-    slug: "designing-dlog",
-    title: "Designing DLog: Turning Reflections Into a Daily Habit",
-    excerpt:
-      "The UX decisions behind a minimalist reflection app and what I learned from early users.",
-    date: "2026-01-21",
-    author: "Ubeyidah",
-    image: "/projects/dlog.png",
-    tags: ["Design", "UX", "Product"],
-  },
+
 ];
