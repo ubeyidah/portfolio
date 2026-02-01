@@ -7,6 +7,10 @@ type Contribution = {
   level: number;
 };
 
+type ContributionsApiResponse = {
+  contributions: Contribution[];
+};
+
 export const getGithubContributions = unstable_cache(
   async () => {
     const username = "ubeyidah";
@@ -17,13 +21,13 @@ export const getGithubContributions = unstable_cache(
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 6000);
 
-    let data: any;
+    let data: ContributionsApiResponse;
     try {
       const res = await fetch(url, { signal: controller.signal });
       if (!res.ok) {
         throw new Error(`GitHub contributions API error: ${res.status}`);
       }
-      data = await res.json();
+      data = (await res.json()) as ContributionsApiResponse;
     } catch {
       return {
         contributions: [],
@@ -33,14 +37,23 @@ export const getGithubContributions = unstable_cache(
       clearTimeout(timeoutId);
     }
 
-    const lastYear = new Date().getFullYear() - 1;
+    const now = new Date();
+    const startDate = new Date(now);
+    startDate.setDate(startDate.getDate() - 365);
+
     const filteredContributions = data.contributions.filter(
-      (contribution: Contribution) => contribution.date.startsWith(`${lastYear}-`)
+      (contribution: Contribution) => {
+        const date = new Date(contribution.date);
+        return date >= startDate && date <= now;
+      }
     );
 
     return {
       contributions: filteredContributions,
-      total: data.total[lastYear],
+      total: filteredContributions.reduce(
+        (sum: number, contribution: Contribution) => sum + contribution.count,
+        0
+      ),
     };
   },
   ["github-contributions-ubeyidah"],

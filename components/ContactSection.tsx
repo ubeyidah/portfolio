@@ -1,5 +1,12 @@
 import { HugeiconsIcon } from "@hugeicons/react";
-import { Github01Icon, Linkedin01Icon, NewTwitterIcon, Email, ArrowRight01Icon, TelegramIcon } from "@hugeicons/core-free-icons";
+import {
+  Github01Icon,
+  Linkedin01Icon,
+  NewTwitterIcon,
+  Email,
+  TelegramIcon,
+} from "@hugeicons/core-free-icons";
+import { cn } from "@/lib/utils";
 
 const emailUser = "ubeyidah";
 const emailDomain = "gmail.com";
@@ -50,66 +57,114 @@ const contactItems = [
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="py-6 md:py-12">
-      <h2 className="text-2xl md:text-3xl font-bold mb-1 font-sans italic">Let&apos;s Connect</h2>
-      <p className="text-muted-foreground mb-8">Reach out through email or find me on social media</p>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4 max-w-4xl mx-auto">
-        {contactItems.map((contact, index) => {
-          const isLarge = contact.size === "large";
+    <section id="contact">
+      <div className="mx-auto h-full max-w-5xl border-x">
+        <div className="flex grow flex-col justify-center border-b bg-linear-to-br from-muted/40 via-background to-muted/20 px-4 py-16 md:items-center">
+          <h2 className="text-2xl md:text-4xl font-bold">Let&apos;s Connect</h2>
+          <p className="mb-5 text-base text-muted-foreground">
+            Reach out through email or find me on social media
+          </p>
+        </div>
 
-          return (
-            <a
-              key={contact.label}
-              href={contact.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`
-                group relative overflow-hidden rounded-2xl border bg-linear-to-br ${contact.gradient}
-                hover:shadow-lg transition-all duration-500 ease-out
-                ${isLarge ? "md:col-span-2" : ""}
-                ${index === 1 ? "md:col-start-3" : ""}
-                ${contact.size === "small" ? "md:col-span-1" : ""}
-              `}
-            >
-              <div className="relative p-4 md:p-6 h-full min-h-40 flex flex-col justify-between">
-                {/* Background Icon */}
-                <div className="absolute top-4 right-4 opacity-10 group-hover:opacity-20 transition-opacity duration-700">
-                  <HugeiconsIcon
-                    icon={contact.icon}
-                    size={isLarge ? 80 : 60}
-                    className="transform group-hover:scale-110 group-hover:-translate-x-2 group-hover:-translate-y-1 transition-all duration-700 ease-out"
-                  />
-                </div>
+        <BorderSeparator />
 
-                {/* Content */}
-                <div className="relative z-10">
-                  <h3 className="text-lg font-semibold mb-1 group-hover:text-primary transition-colors duration-300">
-                    {contact.label}
-                  </h3>
-                  <p className="text-muted-foreground text-sm mb-4">
-                    {contact.value}
-                  </p>
-                </div>
+        <div className="grid md:grid-cols-3">
+          {contactItems.map((contact, index) => {
+            const isLarge = contact.size === "large";
+            const isMiddle = contact.label === "X (Twitter)";
 
-                <div className="relative z-10 flex items-center justify-between">
-                  <span className="text-xs text-muted-foreground/70 uppercase tracking-wider">
-                    Contact
-                  </span>
-                  <div className="transform group-hover:translate-x-1 transition-transform duration-300">
-                    <HugeiconsIcon
-                      icon={ArrowRight01Icon}
-                      size={16}
-                      className="text-muted-foreground/50 group-hover:text-primary transition-colors duration-300"
-                    />
-                  </div>
-                </div>
+            return (
+              <Box
+                key={contact.label}
+                icon={contact.icon}
+                title={contact.label}
+                value={contact.value}
+                href={contact.href}
+                hoverClassName={isMiddle ? "hover:bg-secondary/5" : "hover:bg-secondary/10"}
+                description={
+                  contact.label === "Email"
+                    ? "I respond to all emails within 24 hours."
+                    : contact.label === "GitHub"
+                      ? "See my latest work and contributions."
+                      : contact.label === "LinkedIn"
+                        ? "Connect with me professionally."
+                        : contact.label === "X (Twitter)"
+                          ? "Follow updates and short thoughts."
+                          : "Reach out quickly for a chat."
+                }
+                className={cn(
+                  isLarge ? "md:col-span-2" : "",
+                  index === 1 ? "md:col-start-3" : "",
+                  contact.size === "small" ? "md:col-span-1" : ""
+                )}
+              />
+            );
+          })}
+        </div>
 
-                <div className="absolute inset-0 bg-linear-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
-              </div>
-            </a>
-          );
-        })}
       </div>
     </section>
+  );
+}
+
+function BorderSeparator({ className }: React.ComponentProps<"div">) {
+  return (
+    <div className={cn("relative inset-x-0 h-px w-full border-b", className)} />
+  );
+}
+
+type ContactBox = React.ComponentProps<"div"> & {
+  icon: typeof Email;
+  title: string;
+  description: string;
+  value: string;
+  href: string;
+  hoverClassName?: string;
+};
+
+function Box({
+  title,
+  description,
+  value,
+  href,
+  hoverClassName,
+  className,
+  icon: Icon,
+}: ContactBox) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={cn(
+        "group relative flex h-full flex-col justify-between overflow-hidden border-b transition-colors md:border-r md:border-b-0",
+        hoverClassName,
+        className
+      )}
+    
+    >
+      <div className="pointer-events-none absolute right-6 top-1/2 -translate-y-1/2 opacity-[0.08]">
+        <HugeiconsIcon
+          icon={Icon}
+          size={72}
+          className="transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1"
+        />
+      </div>
+
+      <div className="flex items-center gap-x-3 border-b bg-secondary/50 p-4 dark:bg-secondary/20">
+        <HugeiconsIcon icon={Icon} size={18} className="text-muted-foreground" />
+        <h4 className="font-heading font-medium text-lg tracking-wider">
+          {title}
+        </h4>
+      </div>
+      <div className="flex items-center gap-x-2 p-4 py-12">
+        <span className="font-medium font-mono text-sm tracking-wide">
+          {value}
+        </span>
+      </div>
+      <div className="border-t p-4">
+        <p className="text-muted-foreground text-sm">{description}</p>
+      </div>
+    </a>
   );
 }

@@ -6,35 +6,56 @@ import ProjectsSection from "@/components/ProjectsSection";
 import LatestArticlesSection from "@/components/LatestArticlesSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
-import FixedInput from "@/components/FixedInput";
+import FixedInputClient from "@/components/FixedInputClient";
 import { AnimatedSection } from "@/components/animated-section";
+import { getBlogPosts } from "@/lib/blog-posts";
+import { Suspense } from "react";
 
 export default function Page() {
+  const posts = getBlogPosts();
   return (
-    <main className="space-y-5">
+    <main id="main" className="space-y-0 pb-24 md:pb-0">
       <Header />
       <AnimatedSection>
-        <HeroSection />
+        <section className="border-b">
+          <div className="mx-auto max-w-5xl border-x">
+            <HeroSection />
+            <AboutSection />
+            <Suspense fallback={<GitHubGraphFallback />}> 
+              <GitHubGraph />
+            </Suspense>
+          </div>
+        </section>
       </AnimatedSection>
-      <AnimatedSection delay={100}>
-        <AboutSection />
-      </AnimatedSection>
-      <AnimatedSection delay={200}>
-        <GitHubGraph />
-      </AnimatedSection>
+      <div className="mx-auto max-w-5xl border-x">
+        <div className="section-connector" />
+      </div>
       <AnimatedSection delay={300}>
         <ProjectsSection />
       </AnimatedSection>
+      <div className="section-connector border-x border-input" />
       <AnimatedSection delay={400}>
-        <LatestArticlesSection />
+        <LatestArticlesSection posts={posts} />
       </AnimatedSection>
+      <div className="section-connector" />
       <AnimatedSection delay={600}>
         <ContactSection />
       </AnimatedSection>
+      <div className="section-connector" />
       <AnimatedSection delay={800}>
         <Footer />
       </AnimatedSection>
-      <FixedInput />
+      <FixedInputClient />
     </main>
+  );
+}
+
+function GitHubGraphFallback() {
+  return (
+    <section>
+      <div className="px-4 pt-4 pb-8">
+        <div className="h-32 w-full animate-pulse rounded-md border bg-muted/30" />
+      </div>
+    </section>
   );
 }

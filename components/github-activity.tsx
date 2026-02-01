@@ -21,7 +21,7 @@ export default function GithubActivity({
   data: Activity[];
 }) {
   return (
-    <ContributionGraph data={data}>
+    <ContributionGraph data={data} labels={{ totalCount: "{{count}} activities" }}>
       <ContributionGraphCalendar>
         {({ activity, dayIndex, weekIndex }) => (
           <ContributionGraphBlock

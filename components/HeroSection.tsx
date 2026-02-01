@@ -6,8 +6,8 @@ import Link from "next/link";
 
 export default function HeroSection() {
   return (
-    <section className="pt-8 pb-2">
-      <div className="flex items-center justify-between gap-4">
+    <section className="border-b bg-linear-to-br from-primary/10 via-background to-background">
+      <div className="flex items-center justify-between gap-4 px-4 py-8">
         <div className="flex items-center gap-4">
           <Image
             src="/profile.jpg"
@@ -15,6 +15,8 @@ export default function HeroSection() {
             width={60}
             height={60}
             className="rounded-full aspect-square object-top object-cover"
+            priority
+            sizes="60px"
           />
 
           <div className="flex-1">
@@ -23,17 +25,15 @@ export default function HeroSection() {
           </div>
         </div>
 
-
         <div>
           <Link
             href="#contact"
-            className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-md hover:bg-primary/20 transition-colors"
+            className="px-3 py-2 min-h-11 inline-flex items-center bg-primary/10 text-primary text-xs rounded-md hover:bg-primary/20 transition-colors"
           >
             Let&apos;s Connect
           </Link>
         </div>
       </div>
-
     </section>
   );
 }

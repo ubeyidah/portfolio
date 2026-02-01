@@ -1,19 +1,14 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import FixedInput from "@/components/FixedInput";
-import { AnimatedSection } from "@/components/animated-section";
 import type { Metadata } from "next";
 import { baseMetadata } from "@/lib/seo";
+import BlogListSection from "@/components/BlogListSection";
+import { getBlogPosts } from "@/lib/blog-posts";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   ...baseMetadata,
   title: "Blog",
   description:
     "Writing by Ubeyidah Oumer on software engineering, AI systems, Linux, self-learning, and building real-world tools.",
-  robots: {
-    index: false,
-    follow: true,
-  },
   alternates: {
     canonical: "https://ubeyidah.tech/blog",
   },
@@ -33,24 +28,34 @@ export const metadata: Metadata = {
   },
 };
 
-
 export default function Blog() {
+  const posts = getBlogPosts();
   return (
-    <div className="space-y-5">
-      <Header />
-      <div className="flex items-center justify-center min-h-[80vh]">
-        <AnimatedSection>
-          <div className="text-center">
-            <h1 className="text-8xl font-black text-muted-foreground/30 rotate-2">
-              Writing in Progress
-            </h1>
-          </div>
-        </AnimatedSection>
-      </div>
-      <AnimatedSection delay={200}>
-        <Footer />
-      </AnimatedSection>
-      <FixedInput />
+    <div>
+      <Suspense fallback={<BlogListSkeleton />}>
+        <BlogListSection posts={posts} sectionClassName="py-0" />
+      </Suspense>
+      <div className="section-connector" />
     </div>
+  );
+}
+
+function BlogListSkeleton() {
+  return (
+    <section className="py-0">
+      <div className="mx-auto h-full max-w-5xl border-x">
+        <div className="border-b px-4 py-12">
+          <div className="h-6 w-40 animate-pulse rounded bg-muted/30" />
+          <div className="mt-4 h-10 w-72 animate-pulse rounded bg-muted/30" />
+          <div className="mt-2 h-4 w-60 animate-pulse rounded bg-muted/30" />
+        </div>
+        <div className="border-b px-4 py-3">
+          <div className="h-6 w-full animate-pulse rounded bg-muted/30" />
+        </div>
+        <div className="px-4 py-10">
+          <div className="h-32 w-full animate-pulse rounded bg-muted/30" />
+        </div>
+      </div>
+    </section>
   );
 }

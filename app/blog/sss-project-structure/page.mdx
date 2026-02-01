@@ -1,0 +1,183 @@
+import BlogPostLayout from "@/components/BlogPostLayout";
+import { getBlogPosts } from "@/lib/blog-posts";
+
+export const canonicalUrl = "https://ubeyidah.tech/blog/sss-project-structure";
+
+export const metadata = {
+	title: "How SSS (Single Source Structure) Ended My Project Organization Nightmare",
+	description:
+		"A simple file structure change that reduced friction and sped up my workflow.",
+	alternates: {
+		canonical: canonicalUrl,
+	},
+	openGraph: {
+		title: "How SSS (Single Source Structure) Ended My Project Organization Nightmare",
+		description:
+			"A simple file structure change that reduced friction and sped up my workflow.",
+		url: canonicalUrl,
+		type: "article",
+		images: [
+			{
+				url: "https://miro.medium.com/v2/resize:fit:640/format:webp/1*FcysIa0YKrjadv2ID3K2hg.png",
+				width: 1200,
+				height: 630,
+				alt: "Nviron project preview",
+			},
+		],
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: "How SSS (Single Source Structure) Ended My Project Organization Nightmare",
+		description:
+			"A simple file structure change that reduced friction and sped up my workflow.",
+		images: ["https://miro.medium.com/v2/resize:fit:640/format:webp/1*FcysIa0YKrjadv2ID3K2hg.png"],
+	},
+};
+
+export const post = getBlogPosts().find((item) => item.slug === "sss-project-structure");
+
+<BlogPostLayout
+	title={post?.title ?? "How SSS (Single Source Structure) Ended My Project Organization Nightmare"}
+	excerpt={post?.excerpt}
+	image={post?.image}
+	date={post?.date}
+	author={post?.author}
+	readTime={post?.readTime}
+	tags={post?.tags ?? []}
+	mediumUrl={post?.mediumUrl}
+	slug={post?.slug}
+	canonicalUrl={canonicalUrl}
+>
+
+You know that moment.
+
+You need to jump into that side project you started three months ago. You check your Desktop, nope. Documents folder? Not there either. Downloads? Why would it be in Downloads? But you check anyway because at this point, who knows.
+
+Ten minutes later, you finally find it buried in some randomly named folder you don’t even remember creating.
+
+If this sounds familiar, you’re not alone. I used to have projects scattered everywhere. Some on my Desktop, others in Documents, a few random ones in folders I’d named things like “new_stuff” or “test123.” It was chaos.
+
+Here’s the ironic part: as developers, we obsess over how we structure our code. We debate feature‑based vs module‑based architecture. We follow clean code principles. We organize our software into neat, predictable patterns. But our actual project folders? Total mess. We treat the very place where all our code lives like a junk drawer.
+
+Then I built a system. I call it SSS, the Single Source Structure. It’s simple, predictable, and it actually works.
+
+By the end, you’ll have a clean, structured way to organize every project on your computer. This is aimed at developers, but even if you’re not one, stick around. The principles work for anyone juggling multiple projects.
+
+## The Foundation: One Source of Truth
+
+Here’s the first rule of SSS: put all your projects in one place.
+
+I use a folder called **Workspaces** right in my home directory. Why there?
+
+Think about how your computer already organizes things. You’ve got Desktop, Documents, Downloads, Music. These are all top‑level categories in your home folder. Workspaces fits right in with that pattern. It feels natural. It makes sense.
+
+A few quick notes:
+
+- Start with a capital W (**Workspaces**, not **workspaces**) to match the convention of your other folders.
+- If you're on Linux or Mac, case matters. **Workspaces** and **workspaces** are different folders.
+- On Windows, you're fine either way, but consistency is important.
+
+## Your Categories
+
+Now here’s where SSS gets good. Inside Workspaces, I create subfolders based on the type of work. Here's what mine looks like:
+
+### Personal
+
+This is for passion projects, SaaS ideas you’re tinkering with, or anything you’re building to level up your skills. No client pressure, no deadlines. Just you exploring and creating.
+
+### Playground
+
+Every developer needs a sandbox. This is where you test new libraries, follow along with a tutorial for 20 minutes, or spin up a quick proof‑of‑concept that you’ll never look at again. And that’s okay. This folder is guilt‑free experimentation.
+
+### Work
+
+Real projects. Client work. Freelance gigs. Your 9‑to‑5 company projects.
+
+If you work for multiple clients or companies, break this down further:
+
+```
+Work/
+	├── company-name/
+	├── freelancing/
+	└── another-client/
+```
+
+Notice we’re using kebab‑case here (all lowercase with dashes). It keeps things consistent and easy to type in the terminal.
+
+### OpenSource
+
+Contributions to open‑source projects deserve their own space. Keep them separate so you can quickly reference what you’ve worked on or jump back into a project you’re maintaining.
+
+### Courses
+
+If you’re the kind of developer who learns through video courses or structured tutorials, this folder is for you. Each course gets its own subfolder with all the code you write while following along.
+
+If you’re more of a “read the docs and build something” person, you might skip this and just put learning projects in Personal instead.
+
+### YouTube (optional)
+
+If you create content, keep all your YouTube projects here. Scripts, video files, code examples. Everything in one place. We’ll structure this into subfolders but we’re keeping it simple for now.
+
+A note on naming: I use PascalCase for these main category folders (every word starts with a capital letter). It matches the style of Documents, Downloads, and the rest. But pick whatever feels right to you. The important thing is consistency.
+
+These are the common folders many developers use with SSS, but feel free to customize based on your needs. The structure adapts to you.
+
+## Inside Each Category: Project‑Level Organization
+
+Now, each of these folders will contain actual projects. For project names, I switch to kebab‑case: `my-awesome-app`, `portfolio-redesign`, `learning-rust`.
+
+Why kebab‑case? It’s URL‑friendly, git‑friendly, and easy to read at a glance. Plus, it avoids the spaces‑in‑folder‑names nightmare.
+
+And yes, every project goes on GitHub. Always. We all do that as developers, right? It’s for backup, contribution, and peace of mind.
+
+## The Result: Predictability
+
+With SSS, you always know where things are.
+
+- Need that freelance project from last month? `Workspaces/Work/freelancing/client-website`
+- Want to revisit that React experiment? `Workspaces/Playground/react-hooks-test`
+- Looking for your open‑source contributions? `Workspaces/OpenSource`
+
+No more guessing. No more searching. No more desktop clutter. You have real separation of projects and true predictability. You can tell which project is where without having to memorize anything or dig through endless folders.
+
+## Level Up: Organizing by Year
+
+Here’s a pro move if you’re prolific or have been coding for a while: add a year layer.
+
+Instead of dumping everything directly into Personal, structure it like this:
+
+```
+Workspaces/
+	└── Personal/
+			├── 2024/
+			│   ├── portfolio-v2/
+			│   └── recipe-app/
+			└── 2025/
+					├── ai-playground/
+					└── blog-platform/
+```
+
+The same goes for your other subfolders like Work, Playground, and the rest. Each one gets divided by year. Workspaces stays at the top, then your category folders like Personal and Work, then the year folders like 2025, and then your actual projects inside.
+
+This keeps things manageable. You can archive old years, easily see what you built when, and avoid scrolling through 50+ project folders. It won’t be overwhelming no matter how many projects you accumulate.
+
+If you only have a handful of projects, skip the year folders. Don’t over‑engineer it. This is really for people who have a lot of projects or many folders in these subfolders. It’s your own decision based on your needs.
+
+## Making the Switch
+
+If you’re sitting there looking at your current disaster of a file system, here’s how to migrate to SSS:
+
+1. Create the Workspaces folder and all your subfolders.
+2. Move projects one category at a time. Start with Work since those are probably most important.
+3. Don’t stress about perfect categorization. If you’re unsure where something goes, just pick one and move on.
+4. Set a reminder to clean out Playground every few months.
+
+## In Conclusion
+
+With SSS, you’ll no longer need to remember where you put something or go searching for it. No more endless folders on your Desktop. No more looking at a mess and feeling overwhelmed.
+
+Try this system for a week. I bet you’ll wonder how you ever lived without it.
+
+If this helped you, give it a clap. And if you have any opinion on what should be added or something that could be refined, I appreciate your feedback in the comments. Let’s help other developers finally tame their project chaos.
+
+</BlogPostLayout>

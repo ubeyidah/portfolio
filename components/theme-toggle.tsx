@@ -18,7 +18,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-      className="p-2 rounded-lg hover:bg-muted transition-colors"
+      className="p-2.5 min-h-11 min-w-11 rounded-lg hover:bg-muted transition-colors"
       aria-label="Toggle theme"
     >
       <HugeiconsIcon
