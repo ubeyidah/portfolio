@@ -17,7 +17,7 @@ export default function Header() {
           <div className="flex items-center gap-6">
             <nav className="hidden md:flex gap-8">
               <Link href="/" className="text-muted-foreground hover:text-foreground transition-colors">Home</Link>
-              <Link href="/#projects" className="text-muted-foreground hover:text-foreground transition-colors">Projects</Link>
+              <Link href="/projects" className="text-muted-foreground hover:text-foreground transition-colors">Projects</Link>
               <Link href="/blog" className="text-muted-foreground hover:text-foreground transition-colors">Blog</Link>
             </nav>
             <ThemeToggle />
@@ -36,7 +36,7 @@ export default function Header() {
           <div className="md:hidden border-t bg-background">
             <nav className="flex flex-col gap-4 p-4">
               <Link href="/" className="text-muted-foreground hover:text-foreground transition-colors" onClick={() => setIsMenuOpen(false)}>Home</Link>
-              <Link href="/#projects" className="text-muted-foreground hover:text-foreground transition-colors" onClick={() => setIsMenuOpen(false)}>Projects</Link>
+              <Link href="/projects" className="text-muted-foreground hover:text-foreground transition-colors" onClick={() => setIsMenuOpen(false)}>Projects</Link>
               <Link href="/blog" className="text-muted-foreground hover:text-foreground transition-colors" onClick={() => setIsMenuOpen(false)}>Blog</Link>
             </nav>
           </div>

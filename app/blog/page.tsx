@@ -30,8 +30,8 @@ export const metadata: Metadata = {
 export default function Blog() {
   const posts = getBlogPosts();
   return (
-    <div className="space-y-10">
-      <BlogListSection posts={posts} />
+    <div>
+      <BlogListSection posts={posts} sectionClassName="py-0" />
     </div>
   );
 }

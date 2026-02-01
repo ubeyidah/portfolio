@@ -17,8 +17,10 @@ const getAllTags = (posts: BlogPostWithReadTime[]) => {
 
 export default function BlogListSection({
   posts,
+  sectionClassName,
 }: {
   posts: BlogPostWithReadTime[];
+  sectionClassName?: string;
 }) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -60,9 +62,9 @@ export default function BlogListSection({
   }, [activeTag, query]);
 
   return (
-    <section className="py-6 md:py-12">
+    <section className={`py-6 md:py-12 ${sectionClassName ?? ""}`}>
       <div className="mx-auto h-full max-w-5xl border-x">
-        <div className="relative overflow-hidden border-b bg-linear-to-br from-primary/10 via-background to-background px-4 py-12">
+        <div className="relative overflow-hidden border-b bg-linear-to-br from-muted/40 via-background to-muted/20 px-4 py-12">
           <div className="absolute right-6 top-6 h-16 w-28 rounded-xl border border-border/60 bg-background/60" />
           <div className="absolute bottom-6 right-32 h-10 w-16 rounded-lg border border-border/60 bg-background/60" />
 
