@@ -1,12 +1,16 @@
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Github01Icon, Linkedin01Icon, NewTwitterIcon, Email, ArrowRight01Icon, TelegramIcon } from "@hugeicons/core-free-icons";
 
+const emailUser = "ubeyidah";
+const emailDomain = "gmail.com";
+const emailAddress = `${emailUser}@${emailDomain}`;
+
 const contactItems = [
   {
     icon: Email,
     label: "Email",
-    value: "ubeyidah@gmail.com",
-    href: "mailto:ubeyidah@gmail.com",
+    value: `${emailUser} [at] ${emailDomain}`,
+    href: `mailto:${emailAddress}`,
     size: "large", // spans 2 columns and 2 rows
     gradient: "from-blue-500/5 to-cyan-500/5",
   },
