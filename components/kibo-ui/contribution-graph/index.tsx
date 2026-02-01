@@ -365,7 +365,7 @@ export const ContributionGraphCalendar = ({
   children,
   ...props
 }: ContributionGraphCalendarProps) => {
-  const { weeks, width, height, blockSize, blockMargin, labels } =
+  const { weeks, width, height, blockSize, blockMargin, labels, labelHeight } =
     useContributionGraph();
 
   const monthLabels = useMemo(
@@ -375,7 +375,7 @@ export const ContributionGraphCalendar = ({
 
   return (
     <div
-      className={cn("max-w-full overflow-x-auto overflow-y-hidden", className)}
+      className={cn("max-w-full overflow-x-auto overflow-y-hidden px-4 pt-3 pb-2", className)}
       {...props}
     >
       <svg

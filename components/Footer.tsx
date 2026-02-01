@@ -1,49 +1,28 @@
-import { HugeiconsIcon } from "@hugeicons/react";
-import { Github01Icon, NewTwitterIcon, TelegramIcon } from "@hugeicons/core-free-icons";
-
 export default function Footer() {
   return (
-    <footer className="relative mt-24 border-t border-muted/40 pt-8 pb-6">
-      <div className="footer-lines" aria-hidden="true">
-        <span className="footer-line footer-line--1" />
-        <span className="footer-line footer-line--2" />
-      </div>
+    <footer className="mt-24">
+      <div className="mx-auto h-full max-w-5xl border-x">
+        <div className="border-t" />
+        <div className="flex flex-col gap-6 px-4 py-6">
+          <div className="flex items-center justify-center">
+            <span className="text-base text-muted-foreground">
+              © {new Date().getFullYear()} Ubeyidah. All rights reserved.
+            </span>
+          </div>
 
-      <div className="absolute inset-x-6 -top-4 flex items-center justify-between text-muted-foreground/70">
-        <span className="footer-plus" aria-hidden="true" />
-        <span className="footer-plus" aria-hidden="true" />
-      </div>
+          <div className="h-10 border-y border-border/60 bg-[repeating-linear-gradient(135deg,transparent_0_12px,rgba(0,0,0,0.06)_12px_13px)] dark:bg-[repeating-linear-gradient(135deg,transparent_0_12px,rgba(255,255,255,0.06)_12px_13px)]" />
+        </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground">
-        <span>© {new Date().getFullYear()} Ubeyidah. All rights reserved.</span>
-        <div className="flex items-center gap-3">
-          <a
-            href="https://github.com/ubeyidah"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-foreground transition-colors"
-            aria-label="GitHub"
-          >
-            <HugeiconsIcon icon={Github01Icon} size={16} />
-          </a>
-          <a
-            href="https://x.com/ubeyidah"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-foreground transition-colors"
-            aria-label="X"
-          >
-            <HugeiconsIcon icon={NewTwitterIcon} size={16} />
-          </a>
-          <a
-            href="https://t.me/ubeyidah"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-foreground transition-colors"
-            aria-label="Telegram"
-          >
-            <HugeiconsIcon icon={TelegramIcon} size={16} />
-          </a>
+        <div className="relative flex h-full items-center justify-center py-10">
+          <div className="group relative w-full max-w-4xl overflow-hidden px-6 py-10">
+            <div className="flex items-center gap-6">
+              <div className="h-12 flex-1 bg-[repeating-linear-gradient(135deg,transparent_0_12px,rgba(0,0,0,0.06)_12px_13px)] dark:bg-[repeating-linear-gradient(135deg,transparent_0_12px,rgba(255,255,255,0.06)_12px_13px)]" />
+              <h3 className="font-serif text-center text-5xl font-black tracking-tight text-foreground/10 transition-all duration-300 group-hover:text-white group-hover:drop-shadow-[0_0_18px_rgba(255,255,255,0.35)] md:text-6xl">
+                I USE ARCH BTW
+              </h3>
+              <div className="h-12 flex-1 bg-[repeating-linear-gradient(135deg,transparent_0_12px,rgba(0,0,0,0.06)_12px_13px)] dark:bg-[repeating-linear-gradient(135deg,transparent_0_12px,rgba(255,255,255,0.06)_12px_13px)]" />
+            </div>
+          </div>
         </div>
       </div>
     </footer>

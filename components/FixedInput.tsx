@@ -18,7 +18,7 @@ export default function FixedInput() {
 
   const innerVariants = {
     closed: { height: "auto" },
-    open: { height: 220 }
+    open: { height: 250 }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -38,49 +38,74 @@ export default function FixedInput() {
   }, [open]);
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 p-4">
+    <div className="fixed bottom-0 left-0 right-0 z-50">
       <div className="absolute inset-0 bg-linear-to-t from-background via-background/95 to-transparent pointer-events-none" />
 
-      <motion.div initial="closed" animate={open ? "open" : "closed"} variants={containerVariants} className="relative mx-auto max-w-md">
-        <div className="absolute inset-0 bg-linear-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-xl" />
-        <motion.div ref={ref} variants={innerVariants} className="relative bg-background/80 backdrop-blur-sm border border-white/10 rounded-3xl p-1 shadow-2xl flex flex-col justify-between">
+      <motion.div
+        initial="closed"
+        animate={open ? "open" : "closed"}
+        variants={containerVariants}
+        className="relative mx-auto max-w-md px-4 pb-4"
+      >
+        <motion.div
+          ref={ref}
+          variants={innerVariants}
+          className="relative border-x border-t bg-background/90 backdrop-blur-sm shadow-2xl flex flex-col justify-between"
+        >
+          <div className="absolute inset-x-0 top-0 h-px bg-border/70" />
+          <div className="absolute inset-x-0 bottom-0 h-px bg-border/70" />
           {open && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
-              className="flex flex-col items-center justify-center bg-black/20 rounded-3xl p-6 text-center text-foreground"
+              className="relative z-10 flex flex-col items-center justify-center p-6 text-center text-foreground"
             >
               <h2 className="text-xl font-bold mb-2">AI Chat Feature</h2>
               <p className="mb-4">This feature is under development. For direct contact, please use the available contact options.</p>
-              <div className="flex gap-4">
-                <a href="https://t.me/ubeyidah" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">
-                  <HugeiconsIcon icon={TelegramIcon} size={24} />
+              <div className="flex items-center justify-center gap-2">
+                <a
+                  href="https://t.me/ubeyidah"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-9 w-9 items-center justify-center border border-border/60 bg-background/70 hover:bg-accent transition-colors"
+                >
+                  <HugeiconsIcon icon={TelegramIcon} size={18} />
                 </a>
-                <a href="https://linkedin.com/in/ubeyidahh" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">
-                  <HugeiconsIcon icon={Linkedin01Icon} size={24} />
+                <a
+                  href="https://linkedin.com/in/ubeyidahh"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-9 w-9 items-center justify-center border border-border/60 bg-background/70 hover:bg-accent transition-colors"
+                >
+                  <HugeiconsIcon icon={Linkedin01Icon} size={18} />
                 </a>
-                <a href="https://x.com/ubeyidah" target="_blank" rel="noopener noreferrer" className="hover:opacity-70 transition-opacity">
-                  <HugeiconsIcon icon={NewTwitterIcon} size={24} />
+                <a
+                  href="https://x.com/ubeyidah"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-9 w-9 items-center justify-center border border-border/60 bg-background/70 hover:bg-accent transition-colors"
+                >
+                  <HugeiconsIcon icon={NewTwitterIcon} size={18} />
                 </a>
               </div>
             </motion.div>
           )}
           {!open && <div></div>}
           <form onSubmit={handleSubmit}>
-            <InputGroup className="bg-transparent">
+            <InputGroup className="relative z-10 bg-transparent border-t rounded-none">
               <InputGroupAddon>
                 <HugeiconsIcon icon={AiChat01Icon} size={16} />
               </InputGroupAddon>
               <InputGroupInput
                 type="text"
-                placeholder="Have a question?"
+                placeholder="Ask a product or collaboration question..."
                 value={message}
                 onFocus={() => setOpen(true)}
                 onChange={(e) => setMessage(e.target.value)}
                 className="bg-transparent border-0 focus:ring-0 placeholder:text-muted-foreground/70"
               />
-              <InputGroupButton type="submit" size="sm" className="rounded-full cursor-pointer" disabled={!message.trim()}>
+              <InputGroupButton type="submit" size="sm" className="cursor-pointer" disabled={!message.trim()}>
                 <HugeiconsIcon icon={ArrowUp01Icon} size={16} />
               </InputGroupButton>
             </InputGroup>

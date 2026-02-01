@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { TechIcons } from "./icons/TechIcons";
+import { cn } from "@/lib/utils";
 
 const projects = [
   {
@@ -128,8 +129,8 @@ const projects = [
       { name: "npm", icon: "https://github.com/onemarc/tech-icons/raw/main/icons/npm.svg", url: "https://npmjs.com", iconKey: "Npm" },
       { name: "React Native", icon: "https://github.com/onemarc/tech-icons/raw/main/icons/react-native.svg", url: "https://reactnative.dev", iconKey: "ReactNative" }
     ],
-    github: "https://github.com/ubeyidah/unitwise-ethiopia",
-    githubPrivate: true,
+    github: "https://github.com/ubeyidah/unit-wise-ethiopia",
+    githubPrivate: false,
     live: null,
     livePrivate: true,
   },
@@ -157,74 +158,144 @@ const projects = [
 
 
 export default function ProjectsSection() {
-
   return (
     <section id="projects" className="py-12">
-      <h2 className="text-3xl font-bold mb-2 font-sans italic">What I’m Building</h2>
-      <p className="text-muted-foreground mb-8">Real-world projects with real users</p>
-      <div>
-        {projects.map((project, index) => (
-          <div key={project.id} className="flex flex-col md:flex-row gap-6 items-start border border-muted/30 rounded-lg p-5 my-4 hover:opacity-90 transition-opacity duration-500 relative">
-            <Badge variant="secondary" className="absolute top-0 right-0 rounded capitalize rounded-tr-lg bg-border/40">{project.type}</Badge>
-            {index < projects.length - 1 && (
-              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-px h-4 bg-linear-to-b from-muted/50 to-transparent"></div>
-            )}
-            <div className="shrink-0 w-full md:w-80 h-48 bg-muted rounded-lg flex items-center justify-center relative overflow-hidden group">
-              <Image src={project.image} alt={project.title} width={400} height={200} className="w-full h-full object-cover" />
-              <div className="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <Button size="sm" variant="outline" className="border-4 bg-background" asChild disabled={project.githubPrivate}>
-                  <a href={project.github} target="_blank" rel="noopener noreferrer">
-                    <HugeiconsIcon icon={project.githubPrivate ? LockIcon : Github01Icon} size={16} />
+      <div className="mx-auto h-full max-w-5xl border-x">
+        <div className="flex grow flex-col justify-center px-4 py-16 md:items-center">
+          <h2 className="text-3xl md:text-4xl font-bold">What I’m Building</h2>
+          <p className="mb-5 text-base text-muted-foreground">
+            Real-world projects with real users
+          </p>
+        </div>
+
+        <BorderSeparator />
+
+        <div className="grid">
+          {projects.map((project, index) => (
+            <div
+              key={project.id}
+              className={cn(
+                "flex flex-col justify-between border-b",
+                index === projects.length - 1 && "border-b-0"
+              )}
+            >
+                <div className="flex items-center justify-between gap-3 border-b bg-secondary/50 p-4 dark:bg-secondary/20">
+                  <a
+                    href={project.live || project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-3 text-foreground hover:text-primary"
+                  >
+                    <HugeiconsIcon
+                      icon={ExternalLink}
+                      size={18}
+                      className="text-muted-foreground transition-transform rotate-0 group-hover:-rotate-45"
+                    />
+                    <h3 className="font-heading font-medium text-lg tracking-wider">
+                      {project.title}
+                    </h3>
                   </a>
-                </Button>
-                {project.live && (
-                  <Button size="sm" variant="outline" className="border-4 bg-background" asChild disabled={project.livePrivate}>
-                    <a href={project.live} target="_blank" rel="noopener noreferrer">
-                      <HugeiconsIcon icon={project.livePrivate ? LockIcon : ExternalLink} size={16} />
-                    </a>
-                  </Button>
-                )}
-              </div>
-            </div>
+                  <Badge variant="secondary" className="rounded-full capitalize bg-border/40">
+                    {project.type}
+                  </Badge>
+                </div>
 
-            <div className="flex-1 flex flex-col justify-between h-full">
-              <a
-                href={project.live || project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-lg font-semibold mb-1 hover:underline"
-              >
-                {project.title}
-              </a>
-              <p className="text-muted-foreground mb-6 leading-relaxed text-sm">{project.description}</p>
+                <div className="flex flex-col md:flex-row md:items-stretch">
+                  <div className="relative overflow-hidden md:w-96 md:shrink-0 border-b md:border-b-0 md:border-r border-border/60">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      width={520}
+                      height={320}
+                      className="h-64 w-full object-cover md:h-full"
+                    />
+                  </div>
 
-              <div >
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech) => {
-                    if (tech.iconKey && TechIcons[tech.iconKey as keyof typeof TechIcons]) {
-                      const IconComponent = TechIcons[tech.iconKey as keyof typeof TechIcons];
-                      return (
+                  <div className="flex flex-col justify-between gap-4">
+                    <p className="text-muted-foreground leading-relaxed text-base p-4">
+                      {project.description}
+                    </p>
+                    <div className="border-t">
+                      <div className="flex">
                         <a
-                          key={tech.name}
-                          href={tech.url}
+                          href={project.githubPrivate ? undefined : project.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="w-5 h-5 hover:scale-110 transition-transform"
-                          title={tech.name}
+                          aria-label={
+                            project.githubPrivate
+                              ? `${project.title} GitHub repository is private`
+                              : `View ${project.title} on GitHub`
+                          }
+                          className={cn(
+                            "flex items-center gap-2 w-full h-full bg-background text-sm font-medium transition-colors py-2 border-r pl-4",
+                            project.githubPrivate
+                              ? "cursor-not-allowed opacity-60"
+                              : "hover:bg-accent focus:outline-none focus:ring-2 focus:ring-primary"
+                          )}
+                          tabIndex={project.githubPrivate ? -1 : 0}
+                          aria-disabled={project.githubPrivate}
                         >
-                          <IconComponent className="w-full h-full" />
+                          <HugeiconsIcon icon={project.githubPrivate ? LockIcon : Github01Icon} size={16} />
+                          {project.githubPrivate ? "Private" : "GitHub"}
                         </a>
-                      );
-                    }
-                  })}
+
+                        <a
+                          href={!project.live || project.livePrivate ? undefined : project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={
+                            !project.live || project.livePrivate
+                              ? `${project.title} live site is private or unavailable`
+                              : `View ${project.title} live site`
+                          }
+                          className={cn(
+                            "flex items-center gap-2 w-full h-full bg-background text-sm font-medium transition-colors py-2 pl-4",
+                            !project.live || project.livePrivate
+                              ? "cursor-not-allowed opacity-60"
+                              : "hover:bg-accent focus:outline-none focus:ring-2 focus:ring-primary"
+                          )}
+                          tabIndex={!project.live || project.livePrivate ? -1 : 0}
+                          aria-disabled={!project.live || project.livePrivate}
+                        >
+                          <HugeiconsIcon icon={!project.live || project.livePrivate ? LockIcon : ExternalLink} size={16} />
+                          {!project.live || project.livePrivate ? "Private" : "Live Site"}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
 
-
+                <div className="border-t">
+                  <div className="flex w-full max-w-none flex-wrap items-center gap-x-3 gap-y-2 divide-x divide-border/60 px-3 bg-[repeating-linear-gradient(135deg,transparent_0_10px,rgba(0,0,0,0.06)_10px_11px)] dark:bg-[repeating-linear-gradient(135deg,transparent_0_10px,rgba(255,255,255,0.06)_10px_11px)]">
+                    {project.technologies.map((tech) => {
+                      if (tech.iconKey && TechIcons[tech.iconKey as keyof typeof TechIcons]) {
+                        const IconComponent = TechIcons[tech.iconKey as keyof typeof TechIcons];
+                        return (
+                          <a
+                            key={tech.name}
+                            href={tech.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex h-9 w-9 items-center justify-center border-l border-r border-muted/50 bg-background px-2 transition-colors hover:bg-accent"
+                            title={tech.name}
+                          >
+                            <IconComponent className="h-5 w-5" />
+                          </a>
+                        );
+                      }
+                    })}
+                  </div>
+                </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
+  );
+}
+
+function BorderSeparator({ className }: React.ComponentProps<"div">) {
+  return (
+    <div className={cn("relative inset-x-0 h-px w-full border-b", className)} />
   );
 }

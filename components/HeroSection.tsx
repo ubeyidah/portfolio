@@ -6,8 +6,8 @@ import Link from "next/link";
 
 export default function HeroSection() {
   return (
-    <section className="pt-8 pb-2">
-      <div className="flex items-center justify-between gap-4">
+    <section className="border-b bg-linear-to-br from-primary/10 via-background to-background">
+      <div className="flex items-center justify-between gap-4 px-4 py-8">
         <div className="flex items-center gap-4">
           <Image
             src="/profile.jpg"
@@ -23,7 +23,6 @@ export default function HeroSection() {
           </div>
         </div>
 
-
         <div>
           <Link
             href="#contact"
@@ -33,7 +32,6 @@ export default function HeroSection() {
           </Link>
         </div>
       </div>
-
     </section>
   );
 }

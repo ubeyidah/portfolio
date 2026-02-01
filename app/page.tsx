@@ -16,13 +16,13 @@ export default function Page() {
     <main className="space-y-5">
       <Header />
       <AnimatedSection>
-        <HeroSection />
-      </AnimatedSection>
-      <AnimatedSection delay={100}>
-        <AboutSection />
-      </AnimatedSection>
-      <AnimatedSection delay={200}>
-        <GitHubGraph />
+        <section className="border-b">
+          <div className="mx-auto max-w-5xl border-x">
+            <HeroSection />
+            <AboutSection />
+            <GitHubGraph />
+          </div>
+        </section>
       </AnimatedSection>
       <AnimatedSection delay={300}>
         <ProjectsSection />
