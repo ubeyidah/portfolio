@@ -52,7 +52,7 @@ export const baseMetadata: Metadata = {
       },
     ],
     locale: "en_US",
-    type: "profile",
+    type: "website",
   },
   twitter: {
     card: "summary_large_image",

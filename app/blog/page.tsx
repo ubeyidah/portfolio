@@ -10,6 +10,10 @@ export const metadata: Metadata = {
   title: "Blog",
   description:
     "Writing by Ubeyidah Oumer on software engineering, AI systems, Linux, self-learning, and building real-world tools.",
+  robots: {
+    index: false,
+    follow: true,
+  },
   alternates: {
     canonical: "https://ubeyidah.tech/blog",
   },
@@ -19,6 +23,7 @@ export const metadata: Metadata = {
     description:
       "Thoughts and notes on software engineering, AI, Linux, and learning by building.",
     url: "https://ubeyidah.tech/blog",
+    type: "website",
   },
   twitter: {
     ...baseMetadata.twitter,

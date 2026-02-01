@@ -9,8 +9,8 @@ export default function Header() {
 
   return (
     <header className="flex items-center justify-between p-2 pt-4 border-b relative">
-       <Link href="/">
-         <h1 className="text-l font-bold font-instrument-serif-italic">Ubeyidah</h1>
+       <Link href="/" aria-label="Ubeyidah home">
+         <span className="text-l font-bold font-instrument-serif-italic">Ubeyidah</span>
        </Link>
       <div className="flex items-center gap-6">
         <nav className="hidden md:flex gap-8">

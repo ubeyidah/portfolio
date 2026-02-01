@@ -11,7 +11,7 @@ export default function HeroSection() {
         <div className="flex items-center gap-4">
           <Image
             src="/profile.jpg"
-            alt="ubeyidah"
+            alt="Portrait of Ubeyid Oumer"
             width={60}
             height={60}
             className="rounded-full aspect-square object-top object-cover"
