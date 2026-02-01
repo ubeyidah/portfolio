@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b bg-background/70 backdrop-blur">
       <div className="mx-auto max-w-5xl border-x">
-        <div className="flex items-center justify-between p-4">
+        <div className="flex items-center justify-between p-4 py-2">
           <Link href="/" aria-label="Ubeyidah home">
             <span className="text-l font-bold font-instrument-serif-italic">Ubeyidah</span>
           </Link>

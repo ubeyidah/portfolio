@@ -1,18 +1,20 @@
 import BlogPostLayout from "@/components/BlogPostLayout";
 import { getBlogPosts } from "@/lib/blog-posts";
 
+const canonicalUrl = "https://ubeyidah.tech/blog/sss-project-structure";
+
 export const metadata = {
-	title: "How SSS (Single Source Structure) Ended My Project Organization Nightmare | Ubeyidah",
+	title: "How SSS (Single Source Structure) Ended My Project Organization Nightmare",
 	description:
 		"A simple file structure change that reduced friction and sped up my workflow.",
 	alternates: {
-		canonical: "https://ubeyidah.tech/blog/sss-project-structure",
+		canonical: canonicalUrl,
 	},
 	openGraph: {
 		title: "How SSS (Single Source Structure) Ended My Project Organization Nightmare",
 		description:
 			"A simple file structure change that reduced friction and sped up my workflow.",
-		url: "https://ubeyidah.tech/blog/sss-project-structure",
+		url: canonicalUrl,
 		type: "article",
 		images: [
 			{
@@ -43,6 +45,8 @@ export const post = getBlogPosts().find((item) => item.slug === "sss-project-str
 	readTime={post?.readTime}
 	tags={post?.tags ?? []}
 	mediumUrl={post?.mediumUrl}
+	slug={post?.slug}
+	canonicalUrl={canonicalUrl}
 >
 
 You know that moment.

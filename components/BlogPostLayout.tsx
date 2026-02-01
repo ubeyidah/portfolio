@@ -13,6 +13,8 @@ type BlogPostLayoutProps = {
   readTime?: string;
   tags?: string[];
   mediumUrl?: string;
+  slug?: string;
+  canonicalUrl?: string;
   children: ReactNode;
 };
 
@@ -25,6 +27,8 @@ export default function BlogPostLayout({
   readTime,
   tags,
   mediumUrl,
+  slug,
+  canonicalUrl,
   children,
 }: BlogPostLayoutProps) {
   const formattedDate = date
@@ -35,8 +39,39 @@ export default function BlogPostLayout({
       })
     : null;
 
+  const resolvedCanonicalUrl =
+    canonicalUrl ?? (slug ? `https://ubeyidah.tech/blog/${slug}` : undefined);
+
+  const structuredData: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    description: excerpt,
+    image: image ? [image] : undefined,
+    datePublished: date,
+    dateModified: date,
+    author: {
+      "@type": "Person",
+      name: author ?? "Ubeyidah",
+      url: "https://ubeyidah.tech",
+    },
+    publisher: {
+      "@type": "Person",
+      name: "Ubeyidah",
+      url: "https://ubeyidah.tech",
+      image: "https://ubeyidah.tech/profile.jpg",
+    },
+    inLanguage: "en",
+    keywords: tags?.length ? tags.join(", ") : undefined,
+    mainEntityOfPage: resolvedCanonicalUrl,
+  };
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <div className="mx-auto h-full max-w-5xl border-x">
         <div className="flex items-center gap-3 border-b px-4 py-3">
           <Link

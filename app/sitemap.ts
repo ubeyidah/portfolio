@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { blogPosts } from "@/lib/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date("2026-02-01");
+  const lastModified = new Date();
   const blogEntries = blogPosts.map((post) => ({
     url: `https://ubeyidah.tech/blog/${post.slug}`,
     lastModified: new Date(post.date),

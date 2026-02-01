@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 export const baseMetadata: Metadata = {
+  metadataBase: new URL("https://ubeyidah.tech"),
   title: {
     default: "Ubeyidah | Self-taught Developer & AI Explorer",
     template: "%s | Ubeyidah",
