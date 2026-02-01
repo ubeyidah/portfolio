@@ -1,19 +1,13 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import FixedInput from "@/components/FixedInput";
-import { AnimatedSection } from "@/components/animated-section";
 import type { Metadata } from "next";
 import { baseMetadata } from "@/lib/seo";
+import LatestArticlesSection from "@/components/LatestArticlesSection";
+import { blogPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
   ...baseMetadata,
   title: "Blog",
   description:
     "Writing by Ubeyidah Oumer on software engineering, AI systems, Linux, self-learning, and building real-world tools.",
-  robots: {
-    index: false,
-    follow: true,
-  },
   alternates: {
     canonical: "https://ubeyidah.tech/blog",
   },
@@ -33,24 +27,25 @@ export const metadata: Metadata = {
   },
 };
 
-
 export default function Blog() {
   return (
-    <div className="space-y-5">
-      <Header />
-      <div className="flex items-center justify-center min-h-[80vh]">
-        <AnimatedSection>
-          <div className="text-center">
-            <h1 className="text-8xl font-black text-muted-foreground/30 rotate-2">
-              Writing in Progress
-            </h1>
+    <div className="space-y-10">
+      <section className="pt-8">
+        <div className="max-w-3xl">
+          <p className="text-sm uppercase tracking-wider text-muted-foreground">Blog</p>
+          <h1 className="text-3xl md:text-4xl font-bold tracking-tight mt-2">
+            Notes on building, learning, and designing software
+          </h1>
+          <p className="text-muted-foreground mt-3">
+            Practical lessons from real projects, systems thinking, and product design by Ubeyidah.
+          </p>
+          <div className="mt-4 text-sm text-muted-foreground">
+            {blogPosts.length} articles · Updated regularly
           </div>
-        </AnimatedSection>
-      </div>
-      <AnimatedSection delay={200}>
-        <Footer />
-      </AnimatedSection>
-      <FixedInput />
+        </div>
+      </section>
+
+      <LatestArticlesSection showAllLink={false} />
     </div>
   );
 }
