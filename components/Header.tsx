@@ -22,9 +22,11 @@ export default function Header() {
             </nav>
             <ThemeToggle />
             <button
-              className="md:hidden flex flex-col justify-center items-center w-6 h-6"
+              className="md:hidden flex flex-col justify-center items-center w-11 h-11"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-navigation"
             >
               <span className={`block w-5 h-0.5 bg-current transition-transform duration-300 ${isMenuOpen ? "rotate-45 translate-y-1" : "-translate-y-0.5"}`}></span>
               <span className={`block w-5 h-0.5 bg-current transition-opacity duration-300 ${isMenuOpen ? "opacity-0" : "opacity-100"}`}></span>
@@ -33,7 +35,7 @@ export default function Header() {
           </div>
         </div>
         {isMenuOpen && (
-          <div className="md:hidden border-t bg-background">
+          <div id="mobile-navigation" className="md:hidden border-t bg-background">
             <nav className="flex flex-col gap-4 p-4">
               <Link href="/" className="text-muted-foreground hover:text-foreground transition-colors" onClick={() => setIsMenuOpen(false)}>Home</Link>
               <Link href="/projects" className="text-muted-foreground hover:text-foreground transition-colors" onClick={() => setIsMenuOpen(false)}>Projects</Link>

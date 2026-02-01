@@ -68,7 +68,8 @@ export default function FixedInput() {
                   href="https://t.me/ubeyidah"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-9 w-9 items-center justify-center border border-border/60 bg-background/70 hover:bg-accent transition-colors"
+                  aria-label="Telegram profile"
+                  className="flex h-11 w-11 items-center justify-center border border-border/60 bg-background/70 hover:bg-accent transition-colors"
                 >
                   <HugeiconsIcon icon={TelegramIcon} size={18} />
                 </a>
@@ -76,7 +77,8 @@ export default function FixedInput() {
                   href="https://linkedin.com/in/ubeyidahh"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-9 w-9 items-center justify-center border border-border/60 bg-background/70 hover:bg-accent transition-colors"
+                  aria-label="LinkedIn profile"
+                  className="flex h-11 w-11 items-center justify-center border border-border/60 bg-background/70 hover:bg-accent transition-colors"
                 >
                   <HugeiconsIcon icon={Linkedin01Icon} size={18} />
                 </a>
@@ -84,7 +86,8 @@ export default function FixedInput() {
                   href="https://x.com/ubeyidah"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-9 w-9 items-center justify-center border border-border/60 bg-background/70 hover:bg-accent transition-colors"
+                  aria-label="X profile"
+                  className="flex h-11 w-11 items-center justify-center border border-border/60 bg-background/70 hover:bg-accent transition-colors"
                 >
                   <HugeiconsIcon icon={NewTwitterIcon} size={18} />
                 </a>
@@ -103,9 +106,10 @@ export default function FixedInput() {
                 value={message}
                 onFocus={() => setOpen(true)}
                 onChange={(e) => setMessage(e.target.value)}
+                aria-label="Ask a product or collaboration question"
                 className="bg-transparent border-0 focus:ring-0 placeholder:text-muted-foreground/70"
               />
-              <InputGroupButton type="submit" size="sm" className="cursor-pointer" disabled={!message.trim()}>
+              <InputGroupButton type="submit" size="sm" className="cursor-pointer" disabled={!message.trim()} aria-label="Send message">
                 <HugeiconsIcon icon={ArrowUp01Icon} size={16} />
               </InputGroupButton>
             </InputGroup>

@@ -13,7 +13,7 @@ import { getBlogPosts } from "@/lib/blog-posts";
 export default function Page() {
   const posts = getBlogPosts();
   return (
-    <main className="space-y-0">
+    <main id="main" className="space-y-0 pb-24 md:pb-0">
       <Header />
       <AnimatedSection>
         <section className="border-b">
