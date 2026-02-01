@@ -7,6 +7,7 @@ export type BlogPost = {
   author: string;
   image: string;
   tags: string[];
+  mediumUrl?: string;
 };
 
 export const blogPosts: BlogPost[] = [
@@ -19,6 +20,8 @@ export const blogPosts: BlogPost[] = [
     author: "Ubeyidah",
     image: "https://miro.medium.com/v2/resize:fit:640/format:webp/0*1ZDU7eEksPkMvjmp",
     tags: ["Learning", "Productivity", "Career"],
+    mediumUrl:
+      "https://medium.com/@ubeyidah/the-best-way-to-learn-programming-is-when-you-actually-need-it-cddb4b4af0f5",
   },
   {
     slug: "sss-project-structure",
@@ -29,6 +32,8 @@ export const blogPosts: BlogPost[] = [
     author: "Ubeyidah",
     image: "https://miro.medium.com/v2/resize:fit:640/format:webp/1*FcysIa0YKrjadv2ID3K2hg.png",
     tags: ["Productivity", "File Organization", "Developer Tools"],
+    mediumUrl:
+      "https://medium.com/@ubeyidah/how-sss-single-source-structure-ended-my-project-organization-nightmare-c3edbd6f2774",
   },
 
 ];

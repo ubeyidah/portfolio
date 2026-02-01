@@ -12,6 +12,7 @@ type BlogPostLayoutProps = {
   author?: string;
   readTime?: string;
   tags?: string[];
+  mediumUrl?: string;
   children: ReactNode;
 };
 
@@ -23,6 +24,7 @@ export default function BlogPostLayout({
   author,
   readTime,
   tags,
+  mediumUrl,
   children,
 }: BlogPostLayoutProps) {
   const formattedDate = date
@@ -123,6 +125,42 @@ export default function BlogPostLayout({
             {children}
           </article>
         </div>
+
+        <div className="border-t">
+          <div className="flex flex-col gap-4 px-4 py-6 sm:flex-row sm:items-center sm:justify-between">
+            <div className="space-y-1">
+              <p className="text-sm font-medium text-foreground">Enjoyed this read?</p>
+              <p className="text-sm text-muted-foreground">
+                Clap or leave a response on Medium.
+              </p>
+            </div>
+
+            {mediumUrl ? (
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href={mediumUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full border border-border/60 px-4 py-2 text-sm font-medium text-foreground/90 transition-colors hover:border-primary/60 hover:text-foreground"
+                >
+                  Clap on Medium
+                </a>
+                <a
+                  href={`${mediumUrl}?responses=1`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full border border-border/60 px-4 py-2 text-sm font-medium text-foreground/90 transition-colors hover:border-primary/60 hover:text-foreground"
+                >
+                  Write a response
+                </a>
+              </div>
+            ) : (
+              <div className="h-2 w-full max-w-xs border-y border-border/60 bg-[repeating-linear-gradient(135deg,transparent_0_10px,rgba(0,0,0,0.06)_10px_11px)] dark:bg-[repeating-linear-gradient(135deg,transparent_0_10px,rgba(255,255,255,0.06)_10px_11px)]" />
+            )}
+          </div>
+        </div>
+
+        <div className="h-8 border-t border-border/60 bg-[repeating-linear-gradient(135deg,transparent_0_12px,rgba(0,0,0,0.06)_12px_13px)] dark:bg-[repeating-linear-gradient(135deg,transparent_0_12px,rgba(255,255,255,0.06)_12px_13px)]" />
       </div>
     </main>
   );
