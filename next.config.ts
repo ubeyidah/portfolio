@@ -6,7 +6,12 @@ const withMDX = createMDX({});
 const nextConfig: NextConfig = {
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   images: {
-    domains: ["miro.medium.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "miro.medium.com",
+      },
+    ],
   },
 };
 

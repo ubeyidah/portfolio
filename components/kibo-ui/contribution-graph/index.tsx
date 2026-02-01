@@ -365,7 +365,7 @@ export const ContributionGraphCalendar = ({
   children,
   ...props
 }: ContributionGraphCalendarProps) => {
-  const { weeks, width, height, blockSize, blockMargin, labels, labelHeight } =
+  const { weeks, width, height, blockSize, blockMargin, labels } =
     useContributionGraph();
 
   const monthLabels = useMemo(

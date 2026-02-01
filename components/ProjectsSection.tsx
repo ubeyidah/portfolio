@@ -2,7 +2,6 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { Github01Icon, ExternalLink, LockIcon } from "@hugeicons/core-free-icons";
 import Image from "next/image";
 import { Badge } from "./ui/badge";
-import { Button } from "./ui/button";
 import { TechIcons } from "./icons/TechIcons";
 import { cn } from "@/lib/utils";
 import Link from "next/link";

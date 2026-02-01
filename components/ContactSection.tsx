@@ -4,7 +4,6 @@ import {
   Linkedin01Icon,
   NewTwitterIcon,
   Email,
-  ArrowRight01Icon,
   TelegramIcon,
 } from "@hugeicons/core-free-icons";
 import { cn } from "@/lib/utils";

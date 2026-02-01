@@ -5,14 +5,15 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowLeft01Icon } from "@hugeicons/core-free-icons";
 import { getBlogPosts } from "@/lib/blog-posts";
 
-export default function BlogPostLayout({
+export default async function BlogPostLayout({
   children,
   params,
 }: {
   children: ReactNode;
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const post = getBlogPosts().find((item) => item.slug === params.slug);
+  const { slug } = await params;
+  const post = getBlogPosts().find((item) => item.slug === slug);
   const formattedDate = post?.date
     ? new Date(post.date).toLocaleDateString("en-US", {
         year: "numeric",

@@ -7,6 +7,10 @@ type Contribution = {
   level: number;
 };
 
+type ContributionsApiResponse = {
+  contributions: Contribution[];
+};
+
 export const getGithubContributions = unstable_cache(
   async () => {
     const username = "ubeyidah";
@@ -17,13 +21,13 @@ export const getGithubContributions = unstable_cache(
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 6000);
 
-    let data: any;
+    let data: ContributionsApiResponse;
     try {
       const res = await fetch(url, { signal: controller.signal });
       if (!res.ok) {
         throw new Error(`GitHub contributions API error: ${res.status}`);
       }
-      data = await res.json();
+      data = (await res.json()) as ContributionsApiResponse;
     } catch {
       return {
         contributions: [],

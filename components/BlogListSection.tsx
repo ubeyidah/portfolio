@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -25,15 +25,10 @@ export default function BlogListSection({
   const router = useRouter();
   const searchParams = useSearchParams();
   const pathname = usePathname();
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(() => searchParams.get("q") ?? "");
   const [activeTag, setActiveTag] = useState("All");
 
   const tags = useMemo(() => getAllTags(posts), [posts]);
-
-  useEffect(() => {
-    const q = searchParams.get("q") ?? "";
-    setQuery(q);
-  }, [searchParams]);
 
   const handleQueryChange = (value: string) => {
     setQuery(value);
@@ -59,7 +54,7 @@ export default function BlogListSection({
         post.tags.some((tag) => tag.toLowerCase().includes(normalized));
       return matchesTag && matchesQuery;
     });
-  }, [activeTag, query]);
+  }, [activeTag, query, posts]);
 
   return (
     <section className={`${sectionClassName ?? ""}`}>
