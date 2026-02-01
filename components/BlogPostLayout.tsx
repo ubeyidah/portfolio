@@ -34,7 +34,7 @@ export default function BlogPostLayout({
     : null;
 
   return (
-    <main className="py-6">
+    <main>
       <div className="mx-auto h-full max-w-5xl border-x">
         <div className="flex items-center gap-3 border-b px-4 py-3">
           <Link

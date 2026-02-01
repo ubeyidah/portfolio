@@ -62,13 +62,13 @@ export default function BlogListSection({
   }, [activeTag, query]);
 
   return (
-    <section className={`py-6 md:py-12 ${sectionClassName ?? ""}`}>
+    <section className={`${sectionClassName ?? ""}`}>
       <div className="mx-auto h-full max-w-5xl border-x">
         <div className="relative overflow-hidden border-b bg-linear-to-br from-muted/40 via-background to-muted/20 px-4 py-12">
           <div className="absolute right-6 top-6 h-16 w-28 rounded-xl border border-border/60 bg-background/60" />
           <div className="absolute bottom-6 right-32 h-10 w-16 rounded-lg border border-border/60 bg-background/60" />
 
-          <div className="relative flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="relapy-6 md:py-12tive flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="text-xs uppercase tracking-[0.4em] text-muted-foreground">Blog</p>
               <h2 className="text-3xl md:text-4xl font-bold">All Articles</h2>

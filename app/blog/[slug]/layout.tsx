@@ -22,7 +22,7 @@ export default function BlogPostLayout({
     : null;
 
   return (
-    <main className="py-6">
+    <main>
       <div className="mx-auto h-full max-w-5xl border-x">
         <div className="flex items-center gap-3 border-b px-4 py-3">
           <Link
@@ -68,8 +68,6 @@ export default function BlogPostLayout({
           </div>
         )}
 
-        <div className="h-10 border-b border-border/60 bg-[repeating-linear-gradient(135deg,transparent_0_12px,rgba(0,0,0,0.06)_12px_13px)] dark:bg-[repeating-linear-gradient(135deg,transparent_0_12px,rgba(255,255,255,0.06)_12px_13px)]" />
-
         <div className="border-b">
           <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-3 text-sm text-muted-foreground">
             <div className="flex flex-wrap items-center gap-2">
@@ -102,7 +100,7 @@ export default function BlogPostLayout({
         </div>
 
         <div className="px-4 py-10">
-          <article className="space-y-6 blog-content max-w-3xl">
+          <article className="space-y-6 blog-content">
             {children}
           </article>
         </div>

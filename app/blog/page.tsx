@@ -32,6 +32,7 @@ export default function Blog() {
   return (
     <div>
       <BlogListSection posts={posts} sectionClassName="py-0" />
+      <div className="section-connector" />
     </div>
   );
 }

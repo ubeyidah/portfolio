@@ -206,9 +206,28 @@ html, body {
 }
 
 .blog-content > :not(.full-bleed) {
-  max-width: 48rem;
+  max-width: 50rem;
   margin-left: auto;
   margin-right: auto;
+}
+
+.section-connector {
+  height: 20px;
+  border: 1px solid var(--border);
+  background: repeating-linear-gradient(
+    135deg,
+    transparent 0 12px,
+    rgba(0, 0, 0, 0.08) 12px 13px
+  );
+  opacity: .8;
+}
+
+.dark .section-connector {
+  background: repeating-linear-gradient(
+    135deg,
+    transparent 0 12px,
+    rgba(255, 255, 255, 0.08) 12px 13px
+  );
 }
 
 @keyframes footer-line-move {

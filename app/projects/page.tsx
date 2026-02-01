@@ -41,6 +41,7 @@ export default function ProjectsPage() {
       </section>
 
       <ProjectsSection showHeader={false} showAllLink={false} sectionClassName="pt-0" />
+      <div className="section-connector" />
     </div>
   );
 }

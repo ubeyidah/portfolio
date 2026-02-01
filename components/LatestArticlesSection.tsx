@@ -14,7 +14,7 @@ export default function LatestArticlesSection({
   posts,
 }: LatestArticlesSectionProps) {
   return (
-    <section className="py-6 md:py-12">
+    <section>
       <div className="mx-auto h-full max-w-5xl border-x">
         <div className="flex grow flex-col justify-center border-b bg-linear-to-br from-muted/40 via-background to-muted/20 px-4 py-16 md:items-center">
           <p className="text-xs uppercase tracking-[0.4em] text-muted-foreground">Blog</p>

@@ -58,7 +58,7 @@ const contactItems = [
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="py-6 md:py-12">
+    <section id="contact">
       <div className="mx-auto h-full max-w-5xl border-x">
         <div className="flex grow flex-col justify-center border-b bg-linear-to-br from-muted/40 via-background to-muted/20 px-4 py-16 md:items-center">
           <h2 className="text-2xl md:text-4xl font-bold">Let&apos;s Connect</h2>
@@ -131,7 +131,6 @@ function Box({
   hoverClassName,
   className,
   icon: Icon,
-  ...props
 }: ContactBox) {
   return (
     <a
@@ -143,7 +142,7 @@ function Box({
         hoverClassName,
         className
       )}
-      {...props}
+    
     >
       <div className="pointer-events-none absolute right-6 top-1/2 -translate-y-1/2 opacity-[0.08]">
         <HugeiconsIcon

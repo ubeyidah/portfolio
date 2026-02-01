@@ -13,7 +13,7 @@ import { getBlogPosts } from "@/lib/blog-posts";
 export default function Page() {
   const posts = getBlogPosts();
   return (
-    <main className="space-y-5">
+    <main className="space-y-0">
       <Header />
       <AnimatedSection>
         <section className="border-b">
@@ -24,15 +24,21 @@ export default function Page() {
           </div>
         </section>
       </AnimatedSection>
+      <div className="mx-auto max-w-5xl border-x">
+        <div className="section-connector" />
+      </div>
       <AnimatedSection delay={300}>
         <ProjectsSection />
       </AnimatedSection>
+      <div className="section-connector border-x border-input" />
       <AnimatedSection delay={400}>
         <LatestArticlesSection posts={posts} />
       </AnimatedSection>
+      <div className="section-connector" />
       <AnimatedSection delay={600}>
         <ContactSection />
       </AnimatedSection>
+      <div className="section-connector" />
       <AnimatedSection delay={800}>
         <Footer />
       </AnimatedSection>

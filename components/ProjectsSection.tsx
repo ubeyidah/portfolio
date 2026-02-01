@@ -170,7 +170,7 @@ export default function ProjectsSection({
   sectionClassName,
 }: ProjectsSectionProps) {
   return (
-    <section id="projects" className={cn("py-12", sectionClassName)}>
+    <section id="projects" className={cn(sectionClassName)}>
       <div className="mx-auto h-full max-w-5xl border-x">
         {showHeader && (
           <>

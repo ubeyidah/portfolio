@@ -9,7 +9,7 @@ export default function BlogLayout({
   children: ReactNode;
 }) {
   return (
-    <div className="space-y-5">
+    <div>
       <Header />
       {children}
       <AnimatedSection delay={200}>
