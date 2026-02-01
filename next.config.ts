@@ -5,6 +5,9 @@ const withMDX = createMDX({});
 
 const nextConfig: NextConfig = {
   pageExtensions: ["ts", "tsx", "md", "mdx"],
+  images: {
+    domains: ["miro.medium.com"],
+  },
 };
 
 export default withMDX(nextConfig);

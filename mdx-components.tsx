@@ -50,7 +50,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       const resolvedHeight = Number(height) || 630;
 
       return (
-        <span className="block my-6 overflow-hidden rounded-xl border">
+        <span className="block my-6 -mx-6 md:-mx-10 overflow-hidden rounded-xl border">
           <Image
             src={src}
             alt={alt || ""}

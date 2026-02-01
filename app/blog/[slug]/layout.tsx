@@ -16,7 +16,7 @@ export default function BlogPostLayout({
           ← Back to all posts
         </Link>
 
-        <article className="mt-6 space-y-6">{children}</article>
+        <article className="mt-6 space-y-6 blog-content">{children}</article>
       </div>
     </main>
   );

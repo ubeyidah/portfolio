@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, DM_Sans, Instrument_Serif } from "next/font/google";
+import { Geist, Geist_Mono, DM_Sans, Instrument_Serif, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 import Wrapper from "@/components/ui/wrapper";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -26,6 +26,11 @@ const instrumentSerifItalic = Instrument_Serif({
   variable: '--font-instrument-serif-italic',
 });
 
+const sourceSerif = Source_Serif_4({
+  subsets: ["latin"],
+  variable: "--font-serif",
+});
+
 export const metadata: Metadata = { ...baseMetadata };
 
 export default function RootLayout({
@@ -36,7 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={dmSans.variable} suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerifItalic.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerifItalic.variable} ${sourceSerif.variable} antialiased`}
       >
         <PersonSchema />
         <ThemeProvider>

@@ -1,14 +1,16 @@
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ExternalLink, Calendar01Icon } from "@hugeicons/core-free-icons";
 import Link from "next/link";
-import { blogPosts } from "@/lib/blog";
+import type { BlogPostWithReadTime } from "@/lib/blog-posts";
 
 type LatestArticlesSectionProps = {
   showAllLink?: boolean;
+  posts: BlogPostWithReadTime[];
 };
 
 export default function LatestArticlesSection({
   showAllLink = true,
+  posts,
 }: LatestArticlesSectionProps) {
   return (
     <section className="py-6 md:py-12">
@@ -16,7 +18,7 @@ export default function LatestArticlesSection({
       <p className="text-muted-foreground mb-8">Insights from my development journey</p>
 
       <div className="grid gap-6">
-        {blogPosts.map((article) => (
+        {posts.map((article) => (
           <article
             key={article.slug}
             className="rounded-xl border bg-linear-to-br from-background to-muted/10 border-muted/30 p-4 md:p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"

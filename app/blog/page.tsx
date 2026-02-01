@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { baseMetadata } from "@/lib/seo";
-import LatestArticlesSection from "@/components/LatestArticlesSection";
-import { blogPosts } from "@/lib/blog";
+import BlogListSection from "@/components/BlogListSection";
+import { getBlogPosts } from "@/lib/blog-posts";
 
 export const metadata: Metadata = {
   ...baseMetadata,
@@ -28,6 +28,7 @@ export const metadata: Metadata = {
 };
 
 export default function Blog() {
+  const posts = getBlogPosts();
   return (
     <div className="space-y-10">
       <section className="pt-8">
@@ -40,12 +41,12 @@ export default function Blog() {
             Practical lessons from real projects, systems thinking, and product design by Ubeyidah.
           </p>
           <div className="mt-4 text-sm text-muted-foreground">
-            {blogPosts.length} articles · Updated regularly
+            {posts.length} articles · Updated regularly
           </div>
         </div>
       </section>
 
-      <LatestArticlesSection showAllLink={false} />
+      <BlogListSection posts={posts} />
     </div>
   );
 }

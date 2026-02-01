@@ -8,8 +8,10 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import FixedInput from "@/components/FixedInput";
 import { AnimatedSection } from "@/components/animated-section";
+import { getBlogPosts } from "@/lib/blog-posts";
 
 export default function Page() {
+  const posts = getBlogPosts();
   return (
     <main className="space-y-5">
       <Header />
@@ -26,7 +28,7 @@ export default function Page() {
         <ProjectsSection />
       </AnimatedSection>
       <AnimatedSection delay={400}>
-        <LatestArticlesSection />
+        <LatestArticlesSection posts={posts} />
       </AnimatedSection>
       <AnimatedSection delay={600}>
         <ContactSection />

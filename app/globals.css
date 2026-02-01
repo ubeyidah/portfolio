@@ -201,6 +201,10 @@ html, body {
   transform: translateX(-50%);
 }
 
+.blog-content {
+  font-family: var(--font-serif), Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
 @keyframes footer-line-move {
   0% { transform: translateX(0); }
   100% { transform: translateX(50%); }
