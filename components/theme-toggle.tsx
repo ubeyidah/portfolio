@@ -4,6 +4,7 @@ import { MoonIcon, SunIcon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { ScrollTrigger } from "@/hooks/use-gsap";
 
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
@@ -13,6 +14,10 @@ export function ThemeToggle() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true)
   }, [])
+
+  useEffect(() => {
+    setTimeout(() => ScrollTrigger.refresh(), 100);
+  }, [resolvedTheme]);
 
   if (!mounted) return null
   return (

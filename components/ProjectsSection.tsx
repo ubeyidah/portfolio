@@ -1,3 +1,6 @@
+"use client";
+
+import { useRef } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { Github01Icon, ExternalLink, LockIcon } from "@hugeicons/core-free-icons";
 import Image from "next/image";
@@ -5,6 +8,7 @@ import { Badge } from "./ui/badge";
 import { TechIcons } from "./icons/TechIcons";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { gsap, ScrollTrigger, useGSAP } from "@/hooks/use-gsap";
 
 const projects = [
   {
@@ -166,13 +170,56 @@ export default function ProjectsSection({
   showAllLink = true,
   sectionClassName,
 }: ProjectsSectionProps) {
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const grid = gridRef.current;
+    if (!grid) return;
+
+    const cards = grid.querySelectorAll<HTMLElement>("[data-project-card]");
+    if (cards.length === 0) return;
+
+    const mm = gsap.matchMedia();
+    mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+      gsap.set(cards, { opacity: 0, y: 60, clipPath: "inset(0 100% 0 0)" });
+
+      ScrollTrigger.create({
+        trigger: grid,
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+        animation: gsap.to(cards, {
+          opacity: 1,
+          y: 0,
+          clipPath: "inset(0 0% 0 0)",
+          duration: 0.8,
+          stagger: 0.2,
+          ease: "power3.out",
+        }),
+      });
+
+      cards.forEach((card) => {
+        const img = card.querySelector<HTMLElement>("[data-project-img]");
+        if (!img) return;
+
+        card.addEventListener("mouseenter", () => {
+          gsap.to(img, { scale: 1.08, duration: 0.5, ease: "power2.out" });
+        });
+        card.addEventListener("mouseleave", () => {
+          gsap.to(img, { scale: 1, duration: 0.5, ease: "power2.out" });
+        });
+      });
+    });
+
+    return () => mm.revert();
+  });
+
   return (
     <section id="projects" className={cn(sectionClassName)}>
       <div className="mx-auto h-full max-w-5xl border-x">
         {showHeader && (
           <>
             <div className="flex grow flex-col justify-center border-b bg-linear-to-br from-muted/40 via-background to-muted/20 px-4 py-16 md:items-center">
-              <h2 className="text-3xl md:text-4xl font-bold">What I’m Building</h2>
+              <h2 className="text-3xl md:text-4xl font-bold">What I&rsquo;m Building</h2>
               <p className="mb-5 text-base text-muted-foreground">
                 Real-world projects with real users
               </p>
@@ -182,10 +229,11 @@ export default function ProjectsSection({
           </>
         )}
 
-        <div className="grid">
+        <div ref={gridRef} className="grid">
           {projects.map((project, index) => (
             <div
               key={project.id}
+              data-project-card
               className={cn(
                 "flex flex-col justify-between border-b",
                 index === projects.length - 1 && "border-b-0"
@@ -219,6 +267,7 @@ export default function ProjectsSection({
                       alt={project.title}
                       width={520}
                       height={320}
+                      data-project-img
                       className="h-64 w-full object-cover md:h-full"
                       sizes="(min-width: 768px) 384px, 100vw"
                     />
