@@ -8,7 +8,9 @@ import LatestArticlesSection from "@/components/LatestArticlesSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import FixedInputClient from "@/components/FixedInputClient";
-import { AnimatedSection } from "@/components/animated-section";
+import { Reveal } from "@/components/animations/Reveal";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { Parallax } from "@/components/animations/Parallax";
 import { getBlogPosts } from "@/lib/blog-posts";
 import { Suspense } from "react";
 
@@ -16,40 +18,43 @@ export default function Page() {
   const posts = getBlogPosts();
   return (
     <main id="main" className="space-y-0 pb-24 md:pb-0">
+      <ScrollProgress />
       <Header />
-      <AnimatedSection>
-        <section className="border-b">
-          <div className="mx-auto max-w-5xl border-x">
-            <HeroSection />
+      <section className="border-b">
+        <div className="mx-auto max-w-5xl border-x">
+          <HeroSection />
+          <Reveal direction="up">
             <AboutSection />
+          </Reveal>
+          <Reveal direction="up" delay={0.15}>
             <Suspense fallback={<GitHubGraphFallback />}> 
               <GitHubGraph />
             </Suspense>
-          </div>
-        </section>
-      </AnimatedSection>
+          </Reveal>
+        </div>
+      </section>
       <div className="mx-auto max-w-5xl border-x">
         <div className="section-connector" />
       </div>
-      <AnimatedSection delay={300}>
+      <Reveal direction="up" delay={0.1}>
         <ProjectsSection />
-      </AnimatedSection>
+      </Reveal>
       <div className="section-connector border-x border-input" />
-      <AnimatedSection delay={350}>
+      <Reveal direction="up" delay={0.1}>
         <AchievementsSection />
-      </AnimatedSection>
+      </Reveal>
       <div className="section-connector border-x border-input" />
-      <AnimatedSection delay={400}>
+      <Reveal direction="up" delay={0.1}>
         <LatestArticlesSection posts={posts} />
-      </AnimatedSection>
+      </Reveal>
       <div className="section-connector" />
-      <AnimatedSection delay={600}>
+      <Reveal direction="up" delay={0.1}>
         <ContactSection />
-      </AnimatedSection>
+      </Reveal>
       <div className="section-connector" />
-      <AnimatedSection delay={800}>
+      <Reveal direction="fade" delay={0.1}>
         <Footer />
-      </AnimatedSection>
+      </Reveal>
       <FixedInputClient />
     </main>
   );

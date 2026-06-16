@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, DM_Sans, Instrument_Serif, Source_Serif_4 } from "ne
 import "./globals.css";
 import Wrapper from "@/components/ui/wrapper";
 import { ThemeProvider } from "@/components/theme-provider";
+import { PageTransition } from "@/components/PageTransition";
 import { baseMetadata } from "@/lib/seo";
 import { PersonSchema } from "@/components/StructuredData";
 import { Analytics } from "@vercel/analytics/next"
@@ -51,7 +52,9 @@ export default function RootLayout({
         </a>
         <PersonSchema />
         <ThemeProvider>
-          <Wrapper>{children}</Wrapper>
+          <Wrapper>
+            <PageTransition>{children}</PageTransition>
+          </Wrapper>
         </ThemeProvider>
         <Analytics />
       </body>

@@ -1,3 +1,6 @@
+"use client";
+
+import { useRef } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   Github01Icon,
@@ -7,6 +10,7 @@ import {
   TelegramIcon,
 } from "@hugeicons/core-free-icons";
 import { cn } from "@/lib/utils";
+import { gsap, ScrollTrigger, useGSAP } from "@/hooks/use-gsap";
 
 const emailUser = "ubeyidah";
 const emailDomain = "gmail.com";
@@ -56,6 +60,51 @@ const contactItems = [
 ];
 
 export default function ContactSection() {
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const grid = gridRef.current;
+    if (!grid) return;
+
+    const items = grid.querySelectorAll<HTMLElement>("[data-contact-item]");
+    if (items.length === 0) return;
+
+    const mm = gsap.matchMedia();
+    mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+      gsap.set(items, { opacity: 0, y: 40, scale: 0.95 });
+
+      const directions = [
+        { x: -60, y: 0 },  // Email - from left
+        { x: 60, y: 0 },   // GitHub - from right
+        { x: 0, y: 40 },   // LinkedIn - from bottom
+        { x: -30, y: 30 }, // X - diagonal
+        { x: 30, y: 30 },  // Telegram - diagonal
+      ];
+
+      items.forEach((item, i) => {
+        const dir = directions[i] || { x: 0, y: 40 };
+        gsap.set(item, { x: dir.x, y: dir.y, opacity: 0, scale: 0.95 });
+      });
+
+      ScrollTrigger.create({
+        trigger: grid,
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+        animation: gsap.to(items, {
+          opacity: 1,
+          scale: 1,
+          x: 0,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: "power3.out",
+        }),
+      });
+    });
+
+    return () => mm.revert();
+  });
+
   return (
     <section id="contact">
       <div className="mx-auto h-full max-w-5xl border-x">
@@ -68,7 +117,7 @@ export default function ContactSection() {
 
         <BorderSeparator />
 
-        <div className="grid md:grid-cols-3">
+        <div ref={gridRef} className="grid md:grid-cols-3">
           {contactItems.map((contact, index) => {
             const isLarge = contact.size === "large";
             const isMiddle = contact.label === "X (Twitter)";
@@ -133,6 +182,7 @@ function Box({
 }: ContactBox) {
   return (
     <a
+      data-contact-item
       href={href}
       target="_blank"
       rel="noopener noreferrer"

@@ -1,15 +1,41 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ExternalLink } from "@hugeicons/core-free-icons";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import CertificateLightbox from "./CertificateLightbox";
+import { gsap, ScrollTrigger, useGSAP } from "@/hooks/use-gsap";
 
 export default function AchievementsSection() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const certRef = useRef<HTMLDivElement>(null);
+  const badgeRef = useRef<HTMLSpanElement>(null);
+
+  useGSAP(() => {
+    const cert = certRef.current;
+    const badge = badgeRef.current;
+    if (!cert || !badge) return;
+
+    const mm = gsap.matchMedia();
+    mm.add("(min-width: 768px) and (prefers-reduced-motion: no-preference)", () => {
+      gsap.set(cert, { clipPath: "circle(0% at 50% 50%)" });
+      gsap.set(badge, { scale: 0, opacity: 0 });
+
+      ScrollTrigger.create({
+        trigger: cert,
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+        animation: gsap.timeline({ defaults: { ease: "power3.out" } })
+          .to(cert, { clipPath: "circle(100% at 50% 50%)", duration: 1 })
+          .to(badge, { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2)" }, "-=0.3"),
+      });
+    });
+
+    return () => mm.revert();
+  });
 
   return (
     <>
@@ -26,6 +52,7 @@ export default function AchievementsSection() {
 
           <div className="flex flex-col border-b md:flex-row md:items-stretch">
             <div
+              ref={certRef}
               className="relative overflow-hidden md:w-96 md:shrink-0 border-b md:border-b-0 md:border-r border-border/60 cursor-pointer group"
               onClick={() => setLightboxOpen(true)}
             >
@@ -52,6 +79,7 @@ export default function AchievementsSection() {
                     THRIVE 2018 Hackathon
                   </h3>
                   <Badge
+                    ref={badgeRef}
                     variant="outline"
                     className="rounded-full border-amber-500/30 bg-amber-500/10 text-amber-600 dark:text-amber-400"
                   >
