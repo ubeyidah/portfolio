@@ -8,6 +8,32 @@ import Link from "next/link";
 
 const projects = [
   {
+    id: 0,
+    title: "WaitKit",
+    type: "saas",
+    description: "Waitlist infrastructure for developers. Collect email signups, track real-time analytics with geo/device/source breakdowns, and send targeted email campaigns — without building backend infrastructure. Includes a typed JavaScript SDK and React hook.",
+    image: "/projects/waitkit.png",
+    technologies: [
+      { name: "Express", icon: "https://github.com/onemarc/tech-icons/raw/main/icons/express.svg", url: "https://expressjs.com", iconKey: "Express" },
+      { name: "React", icon: "https://github.com/onemarc/tech-icons/raw/main/icons/react.svg", url: "https://react.dev", iconKey: "React" },
+      { name: "TypeScript", icon: "https://github.com/onemarc/tech-icons/raw/main/icons/typescript.svg", url: "https://typescriptlang.org", iconKey: "TypeScript" },
+      { name: "Tailwind", icon: "https://github.com/onemarc/tech-icons/raw/main/icons/tailwindcss.svg", url: "https://tailwindcss.com", iconKey: "Tailwind" },
+      { name: "Prisma", icon: "https://github.com/onemarc/tech-icons/raw/main/icons/prisma.svg", url: "https://prisma.io", iconKey: "Prisma" },
+      { name: "PostgreSQL", icon: "https://github.com/onemarc/tech-icons/raw/main/icons/postgresql.svg", url: "https://postgresql.org", iconKey: "PostgreSQL" },
+      { name: "Zod", icon: "https://github.com/onemarc/tech-icons/raw/main/icons/zod.svg", url: "https://zod.dev", iconKey: "Zod" },
+      { name: "Resend", icon: "https://raw.githubusercontent.com/resendlhq/resend/main/docs/static/resend-black.svg", url: "https://resend.com", iconKey: "Resend" },
+      { name: "Bun", icon: "https://github.com/onemarc/tech-icons/raw/main/icons/bun.svg", url: "https://bun.sh", iconKey: "Bun" },
+      { name: "Turborepo", icon: "https://github.com/onemarc/tech-icons/raw/main/icons/vercel.svg", url: "https://turbo.build", iconKey: "Turborepo" },
+      { name: "Redis", icon: "https://redis.io/favicon.ico", url: "https://redis.io", iconKey: "Redis" },
+      { name: "Vite", icon: "https://vite.dev/logo.svg", url: "https://vite.dev", iconKey: "Vite" },
+      { name: "Sentry", icon: "https://sentry-brand.storage.googleapis.com/sentry-glyph-black.svg", url: "https://sentry.io", iconKey: "Sentry" },
+    ],
+    github: "https://github.com/ubeyidah/waitkit",
+    githubPrivate: true,
+    live: "https://beta.waitkit.dev",
+    livePrivate: false,
+  },
+  {
     "id": 1,
     "title": "DLog",
     "type": "web app",

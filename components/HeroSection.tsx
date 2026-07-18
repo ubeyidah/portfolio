@@ -11,7 +11,7 @@ export default function HeroSection() {
         <div className="flex items-center gap-4">
           <Image
             src="/profile.jpg"
-            alt="Portrait of Ubeyid Oumer"
+            alt="Portrait of Ubeyidah"
             width={60}
             height={60}
             className="rounded-full aspect-square object-top object-cover"
@@ -20,8 +20,8 @@ export default function HeroSection() {
           />
 
           <div className="flex-1">
-            <h1 className="text-lg font-bold">Ubeyid Oumer</h1>
-            <p className="text-muted-foreground text-sm">Self-Taught Developer</p>
+            <h1 className="text-lg font-bold">Ubeyidah</h1>
+            <p className="text-muted-foreground text-sm">Self-Taught Developer · Building WaitKit</p>
           </div>
         </div>
 
