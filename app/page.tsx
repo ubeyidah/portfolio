@@ -32,7 +32,7 @@ export default function Page() {
         <div className="section-connector" />
       </div>
       <AnimatedSection delay={300}>
-        <ProjectsSection />
+        <ProjectsSection featuredOnly />
       </AnimatedSection>
       <div className="section-connector border-x border-input" />
       <AnimatedSection delay={350}>

@@ -8,9 +8,27 @@ import Link from "next/link";
 
 const projects = [
   {
+    id: 6,
+    title: "OmaClock",
+    type: "omarchy plugin",
+    featured: true,
+    description: "A simple, minimal, theme-aware desktop clock widget for Omarchy. Built as an Omarchy plugin with QML and Quickshell, it renders on the Hyprland bottom layer so it sits behind all windows — always visible, never in the way.",
+    image: "/projects/omaclock.png",
+    technologies: [
+      { name: "QML", icon: "", url: "https://doc.qt.io/qt-6/qmlapplications.html", iconKey: "Qml" },
+      { name: "Quickshell", icon: "", url: "https://quickshell.org", iconKey: "Quickshell" },
+      { name: "Hyprland", icon: "", url: "https://hyprland.org", iconKey: "Hyprland" },
+    ],
+    github: "https://github.com/ubeyidah/omaclock",
+    githubPrivate: false,
+    live: "https://omarchyplugins.com/plugin.html?id=ubeyidah.omaclock",
+    livePrivate: false,
+  },
+  {
     id: 0,
     title: "WaitKit",
     type: "saas",
+    featured: true,
     description: "Waitlist infrastructure for developers. Collect email signups, track real-time analytics with geo/device/source breakdowns, and send targeted email campaigns — without building backend infrastructure. Includes a typed JavaScript SDK and React hook.",
     image: "/projects/waitkit.png",
     technologies: [
@@ -37,6 +55,7 @@ const projects = [
     "id": 1,
     "title": "DLog",
     "type": "web app",
+    "featured": true,
     "description": "A minimalist daily reflection and self-improvement tracker. Built to help users capture daily memories, moods, and progress with discipline and intentionality. Features include quick log entry, mood tracking, tag-based organization, and insightful stats for growth.",
     "image": "/projects/dlog.png",
     "technologies": [
@@ -99,6 +118,7 @@ const projects = [
     id: 2,
     title: "Clario",
     type: "web app",
+    featured: true,
     description: "A user-focused LMS that streamlines course creation, student enrollment, and day-to-day learning. Instructors can publish courses, manage rosters, and send notifications; students access interactive lessons, track progress, and view analytics to improve outcomes.",
     image: "/projects/clario.png",
     technologies: [
@@ -123,6 +143,7 @@ const projects = [
     id: 3,
     title: "Nviron",
     type: "library",
+    featured: true,
     description: "Lightweight, type-safe environment variable manager for modern JS/TS projects. Validates and safely accesses env variables with Zod.",
     image: "/projects/nviron.png",
     technologies: [
@@ -185,13 +206,16 @@ type ProjectsSectionProps = {
   showHeader?: boolean;
   showAllLink?: boolean;
   sectionClassName?: string;
+  featuredOnly?: boolean;
 };
 
 export default function ProjectsSection({
   showHeader = true,
   showAllLink = true,
   sectionClassName,
+  featuredOnly = false,
 }: ProjectsSectionProps) {
+  const shownProjects = featuredOnly ? projects.filter((p) => p.featured) : projects;
   return (
     <section id="projects" className={cn(sectionClassName)}>
       <div className="mx-auto h-full max-w-5xl border-x">
@@ -209,12 +233,12 @@ export default function ProjectsSection({
         )}
 
         <div className="grid">
-          {projects.map((project, index) => (
+          {shownProjects.map((project, index) => (
             <div
               key={project.id}
               className={cn(
                 "flex flex-col justify-between border-b",
-                index === projects.length - 1 && "border-b-0"
+                index === shownProjects.length - 1 && "border-b-0"
               )}
             >
                 <div className="flex items-center justify-between gap-3 border-b bg-secondary/50 p-4 dark:bg-secondary/20">
